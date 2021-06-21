@@ -3,11 +3,12 @@ import * as signupStyles from './signup.module.css'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 
-const Signup = () => {
-    const passwordConfirmRef = useRef()
+
+//can also do export default function login() {} instead of the rafce
+const Login = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
-    const { signup /*,  currentUser*/ } = useAuth() // currentUser has a bunch of user info details
+    const { login /*,  currentUser*/ } = useAuth() // currentUser has a bunch of user info details
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -15,25 +16,21 @@ const Signup = () => {
     async function handleSubmit(e) {
         e.preventDefault()
 
-        if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-            return setError('Passwords do not match')
-        }
-
         try {
             setError('')
             setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value)
+            await login(emailRef.current.value, passwordRef.current.value)
             setLoading(false)
             history.push('/')
         } catch {
-            setError('Failed to create an account')
+            setError('Failed to log in')
         }
     }
 
     return (
         <div>
             <div>
-                <h2>Sign Up</h2>
+                <h2>Login</h2>
                 {error && <h2>{error}</h2>}
                 <form onSubmit={handleSubmit}>
                     <div>
@@ -44,18 +41,17 @@ const Signup = () => {
                         <label htmlFor="password">Password</label>
                         <input type="password" id="password" name="password" ref={passwordRef} required />
                     </div>
-                    <div>
-                        <label htmlFor="password-confirm">Password Confirmation</label>
-                        <input type="password" id="password-confirmation" name="password-confirmation" ref={passwordConfirmRef} required />
-                    </div>
-                    <button disabled={loading} type="submit">Sign Up</button>
+                    <button disabled={loading} type="submit">Login</button>
                 </form>
+                <div>
+                    <Link to="/forgot-password">Forgot Password?</Link>
+                </div>
             </div>
             <div className={signupStyles.login}>
-                Already have an account? <Link to="/login">Login</Link>
+                Need an account? <Link to="/signup">Sign Up</Link>
             </div>
         </div>
     )
 }
 
-export default Signup
+export default Login
