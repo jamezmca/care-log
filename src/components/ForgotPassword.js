@@ -31,8 +31,8 @@ const ForgotPassword = () => {
         <div className={signupStyles.container}>
             <div className={signupStyles.content}>
                 <h2>Password Reset</h2>
-                {error && <h2>{error}</h2>}
-                {message && <h2>{message}</h2>}
+                {error && <h3>{error}</h3>}
+                {message && <h3>{message}</h3>}
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="email">Email</label>

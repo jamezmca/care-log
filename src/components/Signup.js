@@ -34,7 +34,7 @@ const Signup = () => {
         <div className={signupStyles.container}>
             <div className={signupStyles.content}>
                 <h2>Sign Up</h2>
-                {error && <h2>{error}</h2>}
+                {error && <h3>{error}</h3>}
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="email">Email</label>

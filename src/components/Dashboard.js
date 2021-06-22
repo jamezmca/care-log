@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import DashboardContent from './dashboardcomponents/DashboardContent'
+import Layout from './dashboardcomponents/Layout'
 
 const Dashboard = () => {
     const [error, setError] = useState('')
@@ -14,12 +16,12 @@ const Dashboard = () => {
             history.push('/login')
         } catch (error) {
             setError('Failed to logout')
-            
+
         }
     }
 
     return (
-        <>
+        <Layout>
             <div>
                 <div>
                     <h2>Profile</h2>
@@ -29,7 +31,8 @@ const Dashboard = () => {
                 </div>
             </div>
             <div><button onClick={handleLogout}>Logout</button></div>
-        </>
+            <DashboardContent/>
+        </Layout>
     )
 }
 

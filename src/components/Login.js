@@ -31,7 +31,7 @@ const Login = () => {
         <div className={signupStyles.container}>
             <div className={signupStyles.content}>
                 <h2>Login</h2>
-                {error && <h2>{error}</h2>}
+                {error && <h3>{error}</h3>}
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="email">Email</label>
