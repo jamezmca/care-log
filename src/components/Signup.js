@@ -31,8 +31,8 @@ const Signup = () => {
     }
 
     return (
-        <div>
-            <div>
+        <div className={signupStyles.container}>
+            <div className={signupStyles.content}>
                 <h2>Sign Up</h2>
                 {error && <h2>{error}</h2>}
                 <form onSubmit={handleSubmit}>

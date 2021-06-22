@@ -28,8 +28,8 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <div>
+        <div className={signupStyles.container}>
+            <div className={signupStyles.content}>
                 <h2>Login</h2>
                 {error && <h2>{error}</h2>}
                 <form onSubmit={handleSubmit}>

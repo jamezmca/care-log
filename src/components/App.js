@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <div style={{ minHeight: '100vh' }}>
+    <div style={{ minHeight: '100vh', margin: 0, padding: 0}}>
       <Router>
         <AuthProvider>
           <Switch>

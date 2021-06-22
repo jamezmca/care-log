@@ -28,8 +28,8 @@ const ForgotPassword = () => {
     }
 
     return (
-        <div>
-            <div>
+        <div className={signupStyles.container}>
+            <div className={signupStyles.content}>
                 <h2>Password Reset</h2>
                 {error && <h2>{error}</h2>}
                 {message && <h2>{message}</h2>}
