@@ -4,11 +4,22 @@
 }
 
 .container {
+    min-width: 400px;
     width: 100vw;
     height: 100vh;
     background: linear-gradient(302deg, #43C6AC, #8dfcb8, #11dafb);
-    background-size: 1000% 1000%;
-    animation: GradientSwirl 70s ease infinite;
+    /* background-image: url('../assets/images/sunset.jpeg'); */
+    /* background-image: url(https://wallpaperaccess.com/full/1725723.jpg); */
+    background-image: url('../assets/images/deer.jpeg');
+    /* background-image: url(https://wallpaperaccess.com/full/3116820.jpg); */
+    /* background-image: url(https://static.vecteezy.com/system/resources/previews/001/914/356/non_2x/landscape-nature-scenery-concept-free-vector.jpg); */
+    /* background-image: url(https://i.pinimg.com/originals/a0/da/cb/a0dacbf4a4e06a776fa8e8a3cd6b24cc.png); */
+    /* background-image: url(https://i.pinimg.com/originals/e7/d1/93/e7d193de02d33735cef9a907225caeba.jpg); */
+    /* background-image: url(https://images.hdqwalls.com/wallpapers/minimal-morning-landscape-8k-gx.jpg); */
+    /* background-image: url(https://www.pixel4k.com/wp-content/uploads/2020/12/beautiful-evening-landscape-minimal-4k_1608658977-2048x1152.jpg); */
+    background-size: cover;
+    /* background-size: 1000% 1000%; */
+    /* animation: GradientSwirl 70s ease infinite; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -77,12 +88,16 @@ a {
     text-align: center;
     font-size: 13px;
     mix-blend-mode: darken;
+    /* text-shadow: 2px 2px 5px white; */
 }
 
 .login {
     color: white;
+    padding: 3px 5px;
+    border-radius: 5px;
 }
 
 div {
     font-size: 13px;
+    background-color: rgba(255, 255, 255, 0.397);
 }
