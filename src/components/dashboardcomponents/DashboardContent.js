@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import DayView from './DayView'
 import MonthView from './monthview/MonthView'
 import { useDate } from './hooks/useDate'
+import { findByLabelText } from '@testing-library/dom'
 
 //going to manage my state in here chuurski
 
@@ -26,9 +27,9 @@ export default function DashboardContent() {
 
 
     return (
-        <div>
+        <div style={{display: 'flex'}}>
             <DayView />
-            <MonthView days={days} />
+            <MonthView days={days} dateDisplay={dateDisplay} setNav={setNav} nav={nav} setClicked={setClicked}/>
         </div>
     )
 }
