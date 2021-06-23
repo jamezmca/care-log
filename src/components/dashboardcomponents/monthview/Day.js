@@ -9,7 +9,7 @@ export default function Day({day, onClick}) {
         <div onClick={onClick} className={className}>
             {day.value === 'padding' ? '' : day.value}
 
-            {day.event && <div className={monthView.event}>{day.event.title}</div>}
+            {day.event && <div className={monthView.event}><p>{day.event.title}</p></div>}
         </div>
     )
 }

@@ -29,7 +29,7 @@ export default function DashboardContent() {
     return (
         <div style={{display: 'flex'}}>
             <DayView />
-            <MonthView days={days} dateDisplay={dateDisplay} setNav={setNav} nav={nav} setClicked={setClicked}/>
+            <MonthView days={days} dateDisplay={dateDisplay} setNav={setNav} nav={nav} setClicked={setClicked} clicked={clicked} setEvents={setEvents} events={events} eventForDate={eventForDate}/>
         </div>
     )
 }
