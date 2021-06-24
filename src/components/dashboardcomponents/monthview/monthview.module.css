@@ -95,6 +95,11 @@
   .day + .currentDay {
     background-color:#acff4e67;
   }
+
+  .day + .isClicked {
+    background-color:#2ffdd02f;
+  }
+
   .event {
     font-size: 11px;
     padding: 3px;
@@ -103,6 +108,7 @@
     max-height: 55px;
     overflow: hidden;
     box-shadow: 0 0 2px #2fb2e6ce;
+    margin-bottom: 1px;
   }
 
   .event p {

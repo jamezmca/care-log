@@ -7,9 +7,17 @@ export const useDate = (events, nav) => {
 
 
     useEffect(() => {
-        function eventForDate(date) {
-            return events.find(e => e.date === date)
+        // function eventForDate(date) {
+        //     return events.find(e => e.date === date)
+        // }
+
+        function eventsForDate(date) {
+            return events.reduce((acc, event) => {
+                if (event.date === date) return [...acc, event]
+                return acc
+            }, [])
         }
+
         const dt = new Date()
         const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
@@ -42,7 +50,7 @@ export const useDate = (events, nav) => {
             if (i > paddingDays) {
                 daysArr.push({
                     value: i - paddingDays,
-                    event: eventForDate(dayString),
+                    event: eventsForDate(dayString),
                     isCurrentDay: i - paddingDays === day && nav === 0,
                     date: dayString
                 })
