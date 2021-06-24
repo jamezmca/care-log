@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import DayView from './DayView'
 import MonthView from './monthview/MonthView'
 import { useDate } from './hooks/useDate'
-import { findByLabelText } from '@testing-library/dom'
 
 //going to manage my state in here chuurski
 

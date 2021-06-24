@@ -2,5 +2,5 @@
     min-height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
-    padding-top: 60px;
+    flex: 1;
 }

@@ -22,7 +22,7 @@ const Dashboard = () => {
 
     return (
         <Layout>
-            <div>
+            {/* <div>
                 <div>
                     <h2>Profile</h2>
                     {error && <h2>{error}</h2>}
@@ -30,7 +30,7 @@ const Dashboard = () => {
                     <Link to="/update-profile">Update Profile</Link>
                 </div>
             </div>
-            <div><button onClick={handleLogout}>Logout</button></div>
+            <div><button onClick={handleLogout}>Logout</button></div> */}
             <DashboardContent/>
         </Layout>
     )

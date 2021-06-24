@@ -10,7 +10,6 @@ export default function MonthView({ dateDisplay, setNav, nav, days, setClicked, 
     const boxShadows = boxShadow.reduce((acc, e) => {
         return [...acc, `#${e}`]
     }, [])
-    console.log(boxShadows)
 
     return (
         <>
@@ -33,6 +32,7 @@ export default function MonthView({ dateDisplay, setNav, nav, days, setClicked, 
                 <div id="calendar" className={monthView.calendar}>
                     {days.map((d, index) => (
                         <Day
+                            shadow={boxShadows[Math.floor(Math.random() * boxShadows.length)]}
                             day={d}
                             key={index}
                             onClick={() => {
@@ -40,6 +40,7 @@ export default function MonthView({ dateDisplay, setNav, nav, days, setClicked, 
                                     setClicked(d.date)
                                 }
                             }} />
+
                     ))}
                 </div>
 
@@ -48,15 +49,16 @@ export default function MonthView({ dateDisplay, setNav, nav, days, setClicked, 
                 clicked && !eventForDate(clicked) &&
                 <Modal
                     onClose={() => setClicked(null)}
-                    onSave={title => {
-                        setEvents([...events, { title, date: clicked }])
+                    onSave={(title, description, time) => {
+                        setEvents([...events, { title, description, date: clicked, time }])
                         setClicked(null)
                     }}
                     eventText={eventForDate(clicked) ? eventForDate(clicked).title : null}
                     onDelete={() => {
                         setEvents(events.filter(e => e.date !== clicked))
                         setClicked(null)
-                    }} />
+                    }} 
+                    clicked={clicked}/>
             }
         </>
     )

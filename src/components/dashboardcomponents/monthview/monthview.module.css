@@ -4,41 +4,64 @@
   .nextButton {
     margin-right: 2.5px;
     margin-left: 2.5px;
-    width: 75px;
+    width: 50px;
     cursor: pointer;
-    box-shadow: 0px 0px 2px gray;
     border: none;
     outline: none;
-    padding: 5px;
-    border-radius: 5px;
-    color: white;
+    padding: 0px;
+    background-color: white;
+    border-radius: 1px;
+    color: lightskyblue;
+    box-shadow: 0 0 4px lightskyblue;
+    font-size: 13px;
   }
   
   .header {
     padding: 10px;
-    color: #d36c6c;
+    color: #b66cd3;
     font-size: 26px;
     display: flex;
     justify-content: space-between;
   }
-  .header .backButton,
-  .header .nextButton {
-    background-color:#92a1d1;
+
+.backButton:hover,
+.nextButton:hover {
+    background-color: rgba(97, 241, 234, 0.281);
   }
+
   .container {
       flex: 1;
       font-family: "Poppins";
+      margin: 10px;
 
   }
   .weekdays {
     width: 100%;
     display: flex;
-    color: #247BA0;
+    color: #000000;
+    font-weight: 200;
   }
+
   .weekdays div {
     flex: 1;
     padding: 10px;
+    opacity: 0.75;
+    text-align: center;
+    /* overflow: hidden; */
   }
+
+  @media (max-width: 700px) {
+    .weekdays div {
+      opacity: 1;
+      font-weight: 200;
+      font-size: 10px;
+    }
+
+    h4 {
+      font-size: 2px;
+    }
+  }
+
   .calendar {
     width: 100%;
     margin: auto;
@@ -46,8 +69,14 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     flex-wrap: wrap;
   }
+
+  h4 {
+      font-weight: 200;
+      font-size: 10px;
+  }
+
   .day {
-    padding: 10px;
+    padding: 5px;
     height: 80px;
     cursor: pointer;
     box-sizing: border-box;
@@ -58,25 +87,26 @@
     flex-direction: column;
     justify-content: space-between;
   }
+
   .day:hover {
-    background-color: #e8faed;
+    background-color: #2ffdd02f;
   }
   
   .day + .currentDay {
-    background-color:#e8f4fa;
+    background-color:#acff4e67;
   }
   .event {
-    font-size: 8px;
+    font-size: 11px;
     padding: 3px;
-    background-color: #58bae4;
+    background-color: #2fb2e6ce;
     color: white;
-    border-radius: 5px;
     max-height: 55px;
     overflow: hidden;
+    box-shadow: 0 0 2px #2fb2e6ce;
   }
 
   .event p {
-      font-weight: 100;
+      font-weight: 300;
   }
 
   .padding {
@@ -87,14 +117,59 @@
   .newEventModal, .deleteEventModal {
     z-index: 20;
     padding: 25px;
-    background-color: #e8f4fa;
-    box-shadow: 0px 0px 3px black;
-    border-radius: 5px;
-    width: 350px;
-    top: 100px;
-    left: calc(50% - 175px);
+    background-color: white;
+    box-shadow: 0 0 4px skyblue,
+    inset 0 0 4px skyblue;
+    border-radius: 2px;
+    min-width: 300px;
+    top: 0;
+    right: 0;
+    height: 100vh;
     position: absolute;
   }
+
+  .modalHeader {
+    font-size: 40px;
+    font-weight: 100;
+    opacity: 0.7;
+    letter-spacing: 4px;
+  }
+
+  .inputTitle {
+    flex: 3;
+    font-size: 14px;
+  }
+
+  .time {
+    flex: 1;    
+    margin: 1px;
+  }
+
+  .timeLabel {
+    font-size: 18px;
+    padding-right: 10px;
+    font-weight: 200;
+    opacity: 0.7;
+  }
+
+  .textArea {
+    width: 100%;
+    max-width: 500px;
+    border: none;
+    margin-top: 5px;
+    height: 100px;
+    box-shadow: 0 0 4px lightskyblue;
+    border-radius: 2px;
+    padding: 5px;
+    margin-right: 10px;
+  }
+
+  .textArea:focus {
+    outline: none !important;
+    border:1px solid rgba(0, 255, 234, 0.699);
+    box-shadow: 0 0 8px #71cebf8c;
+}
+
   .eventTitleInput {
     padding: 10px;
     width: 100%;
@@ -109,14 +184,27 @@
     border: 2px solid red;
   }
   .cancelButton, .deleteButton {
-    background-color: #d36c6c;
+    background-color: white;
+    box-shadow: 0 0 4px blueviolet;
+    color: blueviolet;
   }
   .saveButton, .closeButton {
-    background-color: #92a1d1;
+    background-color: white;
+    box-shadow: 0 0 4px blueviolet;
+    color: blueviolet;
   }
-  .eventText {
-    font-size: 14px;
+
+  .saveButton, .closeButton, .cancelButton, .deleteButton {
+    font-size: 12px;
+    margin: 2px;
   }
+
+  .saveButton:hover, .closeButton:hover, .cancelButton:hover, .deleteButton:hover {
+    opacity: 0.7;
+  }
+
+ 
+
   .modalBackDrop {
     top: 0px;
     left: 0px;
@@ -124,5 +212,21 @@
     width: 100vw;
     height: 100vh;
     position: absolute;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.2);
+  }
+
+  @media (max-width: 700px) {
+    .weekdays div {
+      opacity: 1;
+      font-weight: 200;
+      font-size: 10px;
+    }
+
+    h4 {
+      font-size: 8px;
+    }
+
+    .event {
+      font-size: 8px;
+    }
   }
