@@ -3,6 +3,7 @@ import DayView from './dayview/DayView'
 import MonthView from './monthview/MonthView'
 import { useDate } from './hooks/useDate'
 import AddButton from './AddButton'
+import CalendarHeader from './monthview/CalendarHeader'
 
 //going to manage my state in here chuurski
 
@@ -37,7 +38,11 @@ export default function DashboardContent() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <DayView />
+                <DayView                     
+                    days={days}
+                    clicked={clicked}
+                    nav={nav}
+                />
                 <MonthView
                     days={days}
                     dateDisplay={dateDisplay}

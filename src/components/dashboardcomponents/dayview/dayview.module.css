@@ -1,0 +1,8 @@
+.container {
+    flex: 1;
+    font-family: "Poppins";
+    margin: 10px;
+    min-width: 100px;
+    max-width: 300px;
+    box-shadow: 0 0 1px black;
+}

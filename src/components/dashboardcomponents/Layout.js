@@ -7,7 +7,7 @@ export default function Layout({ children }) {
     return (
         <div className={layoutStyles.container}>
             <div style={{ flex: 1, position: 'relative', paddingTop: '5px' }}>
-                <Header />
+                {/* <Header /> */}
                 {children}
             </div>
             <Footer />
