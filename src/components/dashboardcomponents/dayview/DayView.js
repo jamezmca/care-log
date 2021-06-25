@@ -8,11 +8,11 @@ export default function DayView({ clicked, nav }) {
     const [swaggity, setSwaggity] = useState()
     const currentDate = new Date()
     const consoleDate = `${`${currentDate}`.split(' ', 3)[0]} ${`${currentDate}`.split(' ', 3)[2]} ${`${currentDate}`.split(' ', 3)[1]}`
-
+    console.log(clicked)
     useEffect(() => {
         setSwaggity(consoleDate)
 
-        if (clicked !== undefined && nav === 0) {
+        if (clicked !== undefined && clicked !== null) {
             let dateForModal = new Date(clicked.split('/')[2], clicked.split('/')[0] - 1, clicked.split('/')[1])
             let dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
             setSwaggity(dateString)
