@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import * as dayview from './dayview.module.css'
+import Hour from './Hour'
 
 
-export default function DayView({ clicked, nav }) {
+export default function DayView({ clicked, nav, days }) {
     console.log(nav)
     const [currentMonth, setCurrentMonth] = useState()
     const [swaggity, setSwaggity] = useState()
     const currentDate = new Date()
     const consoleDate = `${`${currentDate}`.split(' ', 3)[0]} ${`${currentDate}`.split(' ', 3)[2]} ${`${currentDate}`.split(' ', 3)[1]}`
-    console.log(clicked)
     useEffect(() => {
         setSwaggity(consoleDate)
-
         if (clicked !== undefined && clicked !== null) {
             let dateForModal = new Date(clicked.split('/')[2], clicked.split('/')[0] - 1, clicked.split('/')[1])
             let dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
             setSwaggity(dateString)
         }
-
-    }, [clicked, nav])
-
+    }, [clicked, nav, consoleDate])
 
     let dayHours = []
     for (let i = 0; i < 24; i++) {
@@ -28,7 +25,10 @@ export default function DayView({ clicked, nav }) {
 
     return (
         <div className={dayview.container}>
-            <h2>{swaggity}</h2>
+            <h2 style={{color: '#b66cd3', padding: 0, margin: 0}}>{swaggity}</h2>
+            <div style={{display: 'flex', flexDirection: 'column', overflowY: 'scroll'}}>
+                {dayHours.map(e => <Hour clicked={clicked} days={days} hour={e} key={e} />)}
+            </div>
         </div>
     )
 }

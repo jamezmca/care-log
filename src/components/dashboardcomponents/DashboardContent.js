@@ -3,7 +3,6 @@ import DayView from './dayview/DayView'
 import MonthView from './monthview/MonthView'
 import { useDate } from './hooks/useDate'
 import AddButton from './AddButton'
-import CalendarHeader from './monthview/CalendarHeader'
 
 //going to manage my state in here chuurski
 

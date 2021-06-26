@@ -2,7 +2,44 @@
     flex: 1;
     font-family: "Poppins";
     margin: 10px;
-    min-width: 100px;
+    margin-top: 20px;
+    min-width: 200px;
     max-width: 300px;
     box-shadow: 0 0 1px black;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
 }
+
+.hourContainer {
+    min-height: 50px;
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.hourHeader {
+    color: '#b66cd3';
+    position: relative;
+}
+
+.hourHeader::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: calc(93% - 6ch);
+    top: 0.5rem;
+    background-color: black;
+    opacity: 0.3;
+}
+
+/* .hourHeader::before {
+    left: 0;
+} */
+
+.hourHeader::after {
+    left: 6ch;
+}
+
+

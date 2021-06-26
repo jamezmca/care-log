@@ -11,10 +11,7 @@ export default function MonthView({ dateDisplay, setNav, nav, days, setClicked, 
         return [...acc, `#${e}`]
     }, [])
 
-    // console.log(days)
-    // console.log(clicked)
-
-    //on change nav set clicked null
+    //on change nav set clicked null BUT ALSO MAYBE NOT
 
     return (
         <>
