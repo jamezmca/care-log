@@ -20,11 +20,11 @@ export default function MonthView({ dateDisplay, setNav, nav, days, setClicked, 
                 dateDisplay={dateDisplay}
                 onNext={() => {
                     setNav(nav + 1)
-                    setClicked(null)
+                    // setClicked(null)
                 }}
                 onBack={() => {
                     setNav(nav - 1)
-                    setClicked(null)
+                    // setClicked(null)
                 }} />
                 <div id="weekdays" className={monthView.weekdays}>
                     <div>Sunday</div>
