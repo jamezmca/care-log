@@ -3,6 +3,7 @@ import * as monthView from './monthview.module.css'
 
 
 const Modal = ({ onSave, onClose, clicked }) => {
+    console.log(clicked)
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [time, setTime] = useState('')

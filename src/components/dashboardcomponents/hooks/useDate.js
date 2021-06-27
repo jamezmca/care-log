@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 export const useDate = (events, nav) => {
     const [dateDisplay, setDateDisplay] = useState('')
     const [days, setDays] = useState([])
+    const currentDate = new Date()
+    const currentDateString = `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`
 
 
     useEffect(() => {
@@ -68,6 +70,7 @@ export const useDate = (events, nav) => {
 
     return {
         days,
-        dateDisplay
+        dateDisplay,
+        currentDateString
     }
 }

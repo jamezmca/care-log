@@ -31,13 +31,18 @@ export default function DashboardContent() {
         }, [])
     }
 
-    const { days, dateDisplay } = useDate(events, nav)
+
+    const { days, dateDisplay, currentDateString } = useDate(events, nav)
+    // console.log(clicked)
+    // console.log(days)
+    let clickedProp = clicked ? clicked : currentDateString
+    console.log(clickedProp, "hi")
 
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <DayView                     
+                <DayView
                     days={days}
                     clicked={clicked}
                     nav={nav}
@@ -48,7 +53,7 @@ export default function DashboardContent() {
                     setNav={setNav}
                     nav={nav}
                     setClicked={setClicked}
-                    clicked={clicked}
+                    clicked={clickedProp}
                     setEvents={setEvents}
                     events={events}
                     // eventForDate={eventForDate}
@@ -56,7 +61,7 @@ export default function DashboardContent() {
                     addEvent={addEvent}
                     setAddEvent={setAddEvent} />
             </div>
-            <AddButton setAddEvent={setAddEvent} clicked={clicked}/>
+            <AddButton setAddEvent={setAddEvent} clicked={clickedProp} />
         </div>
     )
 }

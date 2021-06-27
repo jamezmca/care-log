@@ -59,7 +59,7 @@ export default function MonthView({ dateDisplay, setNav, nav, days, setClicked, 
                 <Modal
                     onClose={() => {
                         setAddEvent(false)
-                        setClicked(null)
+                        // setClicked(null)
                     }}
                     onSave={(title, description, time) => {
                         setEvents([...events, { title, description, date: clicked, time }])
