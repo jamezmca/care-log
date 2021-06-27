@@ -9,7 +9,6 @@ export default function DashboardContent() {
     const [clicked, setClicked] = useState()
     const [eventsForClickedDay, setEventsForClickedDay] = useState([])
     const [addEvent, setAddEvent] = useState(false)
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
     const [events, setEvents] = useState(
         localStorage.getItem('events') ?
             JSON.parse(localStorage.getItem('events')) :
@@ -31,11 +30,15 @@ export default function DashboardContent() {
     let clickedProp = clicked ? clicked : currentDateString
 
     useEffect(() => {
-        if (days.length > 0) {
+        //if nav isn't = to changed month - clicked month, then don't update state
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        let james = clickedProp.split('/')[0]
+        let james2 = months.indexOf(dateDisplay.split(' ')[0]) + 1
+        let totalJames = james - james2
+        if (days.length > 0 && totalJames === 0) {
             setEventsForClickedDay(() => days.find(day => day.date === clickedProp).event)
         }
-    }, [days, clickedProp])
-    console.log(eventsForClickedDay)
+    }, [days, clickedProp, dateDisplay])
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
