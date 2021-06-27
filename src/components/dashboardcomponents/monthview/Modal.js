@@ -3,12 +3,11 @@ import * as monthView from './monthview.module.css'
 
 
 const Modal = ({ onSave, onClose, clicked }) => {
-    console.log(clicked)
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [time, setTime] = useState('')
     const [error, setError] = useState(false)
-    const dateForModal = new Date(clicked.split('/')[2], clicked.split('/')[0]-1, clicked.split('/')[1])
+    const dateForModal = new Date(clicked.split('/')[2], clicked.split('/')[0] - 1, clicked.split('/')[1])
     const dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
 
 
@@ -28,8 +27,8 @@ const Modal = ({ onSave, onClose, clicked }) => {
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
                     <label htmlFor="time" className={monthView.timeLabel} >Time:</label>
                     <input type="time"
-                        id="time" 
-                        name="time" 
+                        id="time"
+                        name="time"
                         className={monthView.time}
                         onChange={e => setTime(e.target.value)} />
                 </div>
@@ -50,7 +49,9 @@ const Modal = ({ onSave, onClose, clicked }) => {
                             setError(true)
                         }
                     }} id="saveButton" className={monthView.saveButton}>Add</button>
-                    <button onClick={onClose} id="cancelButton" className={monthView.cancelButton}>Cancel</button></div>
+                    <button onClick={onClose} id="cancelButton" className={monthView.cancelButton}>Cancel</button>
+                </div>
+                {/* <h1>render out rest of days todo list</h1> */}
             </div>
             <div id="modalBackDrop" className={monthView.modalBackDrop} />
         </>

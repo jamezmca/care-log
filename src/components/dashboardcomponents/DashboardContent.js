@@ -4,12 +4,12 @@ import MonthView from './monthview/MonthView'
 import { useDate } from './hooks/useDate'
 import AddButton from './AddButton'
 
-//going to manage my state in here chuurski
-
 export default function DashboardContent() {
     const [nav, setNav] = useState(0)
     const [clicked, setClicked] = useState()
+    const [eventsForClickedDay, setEventsForClickedDay] = useState([])
     const [addEvent, setAddEvent] = useState(false)
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
     const [events, setEvents] = useState(
         localStorage.getItem('events') ?
             JSON.parse(localStorage.getItem('events')) :
@@ -20,10 +20,6 @@ export default function DashboardContent() {
         localStorage.setItem('events', JSON.stringify(events))
     }, [events])
 
-    // function eventForDate(date) {
-    //     return events.find(e => e.date === date)
-    // }
-
     function eventsForDate(date) {
         return events.reduce((acc, event) => {
             if (event.date === date) return [...acc, event]
@@ -31,13 +27,15 @@ export default function DashboardContent() {
         }, [])
     }
 
-
     const { days, dateDisplay, currentDateString } = useDate(events, nav)
-    // console.log(clicked)
-    // console.log(days)
     let clickedProp = clicked ? clicked : currentDateString
-    console.log(clickedProp, "hi")
 
+    useEffect(() => {
+        if (days.length > 0) {
+            setEventsForClickedDay(() => days.find(day => day.date === clickedProp).event)
+        }
+    }, [days, clickedProp])
+    console.log(eventsForClickedDay)
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -46,6 +44,7 @@ export default function DashboardContent() {
                     days={days}
                     clicked={clicked}
                     nav={nav}
+                    eventsForClickedDay={eventsForClickedDay}
                 />
                 <MonthView
                     days={days}
@@ -65,3 +64,18 @@ export default function DashboardContent() {
         </div>
     )
 }
+
+
+    // function dayHasEvents(day) {
+    //     let newArr = []
+    //     if (!day) return newArr.push(false)
+    //     if (day.event.length === 0) return newArr.push(false)
+    //     newArr.push(true)
+    //     newArr.push(day.event.map(e => [e.date, e.description, e.time, e.title]))
+    //     return newArr
+    // }
+
+
+    // function eventForDate(date) {
+    //     return events.find(e => e.date === date)
+    // }
