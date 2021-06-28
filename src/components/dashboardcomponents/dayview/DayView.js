@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import * as dayview from './dayview.module.css'
 import Hour from './Hour'
 
 
 export default function DayView({ clicked, nav, days }) {
     const [swaggity, setSwaggity] = useState()
+    const elRef = useRef()
     const currentDate = new Date()
     const consoleDate = `${`${currentDate}`.split(' ', 3)[0]} ${`${currentDate}`.split(' ', 3)[2]} ${`${currentDate}`.split(' ', 3)[1]}`
 
@@ -15,6 +16,7 @@ export default function DayView({ clicked, nav, days }) {
             let dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
             setSwaggity(dateString)
         }
+        elRef.current.scrollIntoView({ behavior: 'smooth' })
     }, [clicked, nav, consoleDate, days])
 
     let dayHours = []
@@ -26,7 +28,12 @@ export default function DayView({ clicked, nav, days }) {
         <div className={dayview.container}>
             <h2 style={{ color: '#b66cd3', padding: 0, margin: 0 }}>{swaggity}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', overflowY: 'scroll' }}>
-                {dayHours.map(e => <Hour clicked={clicked} days={days} hour={e} key={e} />)}
+                {dayHours.map(e => {
+                    if (e === '08:00') {
+                        return <div key ={e} ref={elRef}><Hour clicked={clicked} days={days} hour={e} /></div>
+                    }
+                    return <Hour clicked={clicked} days={days} hour={e} key={e} />
+                })}
             </div>
         </div>
     )
