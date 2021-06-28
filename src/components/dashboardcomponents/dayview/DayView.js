@@ -3,11 +3,12 @@ import * as dayview from './dayview.module.css'
 import Hour from './Hour'
 
 
-export default function DayView({ clicked, nav, days, eventsForClickedDay}) {
+export default function DayView({ clicked, nav, days, eventsForClickedDay }) {
     const [swaggity, setSwaggity] = useState()
     const elRef = useRef()
     const currentDate = new Date()
     const consoleDate = `${`${currentDate}`.split(' ', 3)[0]} ${`${currentDate}`.split(' ', 3)[2]} ${`${currentDate}`.split(' ', 3)[1]}`
+    // console.log(eventsForClickedDay)
 
     useEffect(() => {
         setSwaggity(consoleDate)
@@ -19,6 +20,8 @@ export default function DayView({ clicked, nav, days, eventsForClickedDay}) {
         elRef.current.scrollIntoView({ behavior: 'smooth' })
     }, [clicked, nav, consoleDate, days])
 
+
+
     let dayHours = []
     for (let i = 0; i < 24; i++) {
         `${i}`.length === 1 ? dayHours.push(`0${i}:00`) : dayHours.push(`${i}:00`)
@@ -26,6 +29,7 @@ export default function DayView({ clicked, nav, days, eventsForClickedDay}) {
 
     function hourFilter(dayEvents, currentHour) {
         let hourEvents = dayEvents.filter(e => e.time.split(':')[0] === currentHour.split(':')[0])
+        // e ? e.time.split(':')[0] === currentHour.split(':')[0] : false
         return hourEvents
     }
     return (
@@ -34,9 +38,9 @@ export default function DayView({ clicked, nav, days, eventsForClickedDay}) {
             <div style={{ display: 'flex', flexDirection: 'column', overflowY: 'scroll' }}>
                 {dayHours.map(e => {
                     if (e === '08:00') {
-                        return <div key ={e} ref={elRef}><Hour clicked={clicked} days={days} hour={e} eventsForClickedDay={hourFilter(eventsForClickedDay, e)}/></div>
+                        return <div key={e} ref={elRef}><Hour clicked={clicked} days={days} hour={e} eventsForClickedDay={hourFilter(eventsForClickedDay, e)} /></div>
                     }
-                    return <Hour clicked={clicked} days={days} hour={e} key={e} eventsForClickedDay={hourFilter(eventsForClickedDay, e)}/>
+                    return <Hour clicked={clicked} days={days} hour={e} key={e} eventsForClickedDay={hourFilter(eventsForClickedDay, e)} />
                 })}
             </div>
         </div>

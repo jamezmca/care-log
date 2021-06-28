@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default function HourEvent() {
+export default function HourEvent({event}) {
+    console.log(event)
     //have an expand and an x button on the right side, expand changes the height of the item to show description
     return (
         <div>
