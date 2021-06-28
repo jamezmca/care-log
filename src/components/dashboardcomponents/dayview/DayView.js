@@ -3,7 +3,7 @@ import * as dayview from './dayview.module.css'
 import Hour from './Hour'
 
 
-export default function DayView({ clicked, nav, days }) {
+export default function DayView({ clicked, nav, days, eventsForClickedDay}) {
     const [swaggity, setSwaggity] = useState()
     const elRef = useRef()
     const currentDate = new Date()
@@ -24,15 +24,19 @@ export default function DayView({ clicked, nav, days }) {
         `${i}`.length === 1 ? dayHours.push(`0${i}:00`) : dayHours.push(`${i}:00`)
     }
 
+    function hourFilter(dayEvents, currentHour) {
+        let hourEvents = dayEvents.filter(e => e.time.split(':')[0] === currentHour.split(':')[0])
+        return hourEvents
+    }
     return (
         <div className={dayview.container}>
             <h2 style={{ color: '#b66cd3', padding: 0, margin: 0, marginBottom: '20px' }}>{swaggity}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', overflowY: 'scroll' }}>
                 {dayHours.map(e => {
                     if (e === '08:00') {
-                        return <div key ={e} ref={elRef}><Hour clicked={clicked} days={days} hour={e} /></div>
+                        return <div key ={e} ref={elRef}><Hour clicked={clicked} days={days} hour={e} eventsForClickedDay={hourFilter(eventsForClickedDay, e)}/></div>
                     }
-                    return <Hour clicked={clicked} days={days} hour={e} key={e} />
+                    return <Hour clicked={clicked} days={days} hour={e} key={e} eventsForClickedDay={hourFilter(eventsForClickedDay, e)}/>
                 })}
             </div>
         </div>
