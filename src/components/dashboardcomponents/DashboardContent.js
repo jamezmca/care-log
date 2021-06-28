@@ -31,11 +31,15 @@ export default function DashboardContent() {
 
     useEffect(() => {
         //if nav isn't = to changed month - clicked month, then don't update state
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-        let james = clickedProp.split('/')[0]
-        let james2 = months.indexOf(dateDisplay.split(' ')[0]) + 1
-        let totalJames = james - james2
-        if (days.length > 0 && totalJames === 0) {
+        // const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        // let james = clickedProp.split('/')[0]
+        // let james2 = months.indexOf(dateDisplay.split(' ')[0]) + 1
+        // let totalJames = james - james2
+        // let clickedYearDiff = clickedProp.split('/')[2] - currentDateString.split('/')[2]
+        //&& Math.abs(clickedYearDiff) > Math.abs(Math.floor(nav / 12))
+        let totalJames = days.find(day => day.date === clickedProp)
+        console.log(totalJames)
+        if (days.length > 0 && totalJames !== undefined) {
             setEventsForClickedDay(() => days.find(day => day.date === clickedProp).event)
         }
     }, [days, clickedProp, dateDisplay])
