@@ -26,7 +26,7 @@ export default function DayView({ clicked, nav, days }) {
 
     return (
         <div className={dayview.container}>
-            <h2 style={{ color: '#b66cd3', padding: 0, margin: 0 }}>{swaggity}</h2>
+            <h2 style={{ color: '#b66cd3', padding: 0, margin: 0, marginBottom: '20px' }}>{swaggity}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', overflowY: 'scroll' }}>
                 {dayHours.map(e => {
                     if (e === '08:00') {
