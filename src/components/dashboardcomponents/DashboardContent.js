@@ -7,6 +7,7 @@ import AddButton from './AddButton'
 export default function DashboardContent() {
     const [nav, setNav] = useState(0)
     const [clicked, setClicked] = useState()
+    const [hourSelected, setHourSelected] = useState('')
     const [eventsForClickedDay, setEventsForClickedDay] = useState([])
     const [addEvent, setAddEvent] = useState(false)
     const [events, setEvents] = useState(
@@ -44,6 +45,8 @@ export default function DashboardContent() {
                     clicked={clicked}
                     nav={nav}
                     eventsForClickedDay={eventsForClickedDay}
+                    hourSelected={hourSelected}
+                    setHourSelected={setHourSelected}
                 />
                 <MonthView
                     days={days}
@@ -57,9 +60,11 @@ export default function DashboardContent() {
                     // eventForDate={eventForDate}
                     eventsForDate={eventsForDate}
                     addEvent={addEvent}
-                    setAddEvent={setAddEvent} />
+                    setAddEvent={setAddEvent}
+                    hourSelected={hourSelected} />
             </div>
             <AddButton setAddEvent={setAddEvent} clicked={clickedProp} />
+            {/* add the add button next to the next and back buttons  */}
         </div>
     )
 }

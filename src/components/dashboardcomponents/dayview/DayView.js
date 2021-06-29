@@ -3,12 +3,11 @@ import * as dayview from './dayview.module.css'
 import Hour from './Hour'
 
 
-export default function DayView({ clicked, nav, days, eventsForClickedDay }) {
+export default function DayView({ clicked, nav, days, eventsForClickedDay, hourSelected, setHourSelected }) {
     const [swaggity, setSwaggity] = useState()
     const elRef = useRef()
     const currentDate = new Date()
     const consoleDate = `${`${currentDate}`.split(' ', 3)[0]} ${`${currentDate}`.split(' ', 3)[2]} ${`${currentDate}`.split(' ', 3)[1]}`
-    // console.log(eventsForClickedDay)
 
     useEffect(() => {
         setSwaggity(consoleDate)
@@ -18,6 +17,7 @@ export default function DayView({ clicked, nav, days, eventsForClickedDay }) {
             setSwaggity(dateString)
         }
         elRef.current.scrollIntoView({ behavior: 'smooth' })
+        console.log(elRef.current ? true : false)
     }, [clicked, nav, consoleDate, days])
 
 
@@ -29,18 +29,22 @@ export default function DayView({ clicked, nav, days, eventsForClickedDay }) {
 
     function hourFilter(dayEvents, currentHour) {
         let hourEvents = dayEvents.filter(e => e.time.split(':')[0] === currentHour.split(':')[0])
-        // e ? e.time.split(':')[0] === currentHour.split(':')[0] : false
         return hourEvents
     }
+
+    let selectedHourColor = 'aquamarine'
+
     return (
         <div className={dayview.container}>
             <h2 style={{ color: '#b66cd3', padding: 0, margin: 0, marginBottom: '20px' }}>{swaggity}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', overflowY: 'scroll' }}>
                 {dayHours.map(e => {
-                    if (e === '08:00') {
-                        return <div key={e} ref={elRef}><Hour clicked={clicked} days={days} hour={e} eventsForClickedDay={hourFilter(eventsForClickedDay, e)} /></div>
+                    if (e === '07:00') {
+                        return <div key={e} ref={elRef} onClick={() => setHourSelected(e)} style={{backgroundColor: hourSelected === e ? selectedHourColor : ''}}>
+                            <Hour clicked={clicked} days={days} hour={e} eventsForClickedDay={hourFilter(eventsForClickedDay, e)} />
+                        </div>
                     }
-                    return <Hour clicked={clicked} days={days} hour={e} key={e} eventsForClickedDay={hourFilter(eventsForClickedDay, e)} />
+                    return <div key={e} onClick={() => setHourSelected(e)} style={{backgroundColor: hourSelected === e ? selectedHourColor : ''}}><Hour clicked={clicked} days={days} hour={e} eventsForClickedDay={hourFilter(eventsForClickedDay, e)} /></div>
                 })}
             </div>
         </div>

@@ -14,19 +14,29 @@
 }
 
 .hourContainer {
-    min-height: 50px;
+    min-height: 33px;
     flex: 1;
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    border-top: 1px solid rgba(0, 128, 128, 0.432);
+    max-height: 150px;
 }
+/* change into column and centered for media query */
 
 .hourHeader {
     color: '#b66cd3';
     position: relative;
+    padding-right: 5px;
 }
 
-.hourHeader::after {
+.hourEvent {
+    flex: 1;
+    border: 1px solid salmon;
+    height: 100%;
+}
+
+/* .hourHeader::after {
     content: '';
     position: absolute;
     height: 1px;
@@ -34,14 +44,14 @@
     top: 0.5rem;
     background-color: black;
     opacity: 0.3;
-}
+} */
 
 /* .hourHeader::before {
     left: 0;
 } */
 
-.hourHeader::after {
+/* .hourHeader::after {
     left: 6ch;
-}
+} */
 
 
