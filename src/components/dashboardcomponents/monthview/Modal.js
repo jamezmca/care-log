@@ -29,6 +29,7 @@ const Modal = ({ onSave, onClose, clicked, hourSelected }) => {
                     <input type="time"
                         id="time"
                         name="time"
+                        required
                         value={time}
                         className={monthView.time}
                         onChange={e => setTime(e.target.value)} />
@@ -43,7 +44,7 @@ const Modal = ({ onSave, onClose, clicked, hourSelected }) => {
 
                 <div style={{ display: 'flex', width: '100%' }}>
                     <button onClick={() => {
-                        if (title) {
+                        if (title && time) {
                             setError(false)
                             onSave(title, description, time)
                         } else {

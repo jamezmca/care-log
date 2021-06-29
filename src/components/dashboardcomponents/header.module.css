@@ -18,18 +18,17 @@ h1 {
 }
 
 .addButton {
-    height: 50px;
+    height: 40px;
     cursor: pointer;
     color: white;
-    width: 200px;
-    align-self: center;
+    width: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 255, 128, 0.356);
     border-radius: 4px;
     box-shadow: 0 0 8px 4px rgba(135, 207, 235, 0.274);
-    margin: 20px;
+    margin-left: 20px;
 
 }
 

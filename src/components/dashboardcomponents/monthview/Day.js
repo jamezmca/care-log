@@ -1,10 +1,8 @@
 import React from 'react'
 import * as monthView from './monthview.module.css'
 
-
 export default function Day({ day, onClick, shadow, isClickedDay }) {
     const bool = day.event?.length ? day.event.length : false
-    // console.log(bool)
     const className = `${monthView.day} 
         ${day.value === 'padding' ? `${monthView.padding}` : ''} 
         ${day.isCurrentDay ? `${monthView.currentDay}` : ''} 

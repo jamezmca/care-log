@@ -33,7 +33,8 @@
 .hourEvent {
     flex: 1;
     border: 1px solid salmon;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* .hourHeader::after {

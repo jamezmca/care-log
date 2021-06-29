@@ -61,9 +61,9 @@ export default function DashboardContent() {
                     eventsForDate={eventsForDate}
                     addEvent={addEvent}
                     setAddEvent={setAddEvent}
-                    hourSelected={hourSelected} />
+                    hourSelected={hourSelected} 
+                    clickedProp={clickedProp}/>
             </div>
-            <AddButton setAddEvent={setAddEvent} clicked={clickedProp} />
             {/* add the add button next to the next and back buttons  */}
         </div>
     )
