@@ -29,6 +29,7 @@ h1 {
     border-radius: 4px;
     box-shadow: 0 0 8px 4px rgba(135, 207, 235, 0.274);
     margin-left: 20px;
+    align-self: flex-start;
 
 }
 

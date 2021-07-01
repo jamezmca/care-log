@@ -1,7 +1,6 @@
 import React from 'react'
 import Day from './Day'
 import Modal from './Modal'
-import CalendarHeader from './CalendarHeader'
 import * as monthView from './monthview.module.css'
 
 
@@ -15,18 +14,6 @@ export default function MonthView({ dateDisplay, setNav, nav, days, setClicked, 
     return (
         <>
             <div id="container" className={monthView.container}>
-            <CalendarHeader
-                dateDisplay={dateDisplay}
-                onNext={() => {
-                    setNav(nav + 1)
-                    // setClicked(null)
-                }}
-                onBack={() => {
-                    setNav(nav - 1)
-                    // setClicked(null)
-                }} 
-                setAddEvent={setAddEvent}
-                clickedProp={clickedProp}/>
                 <div id="weekdays" className={monthView.weekdays}>
                     <div>Sunday</div>
                     <div>Monday</div>

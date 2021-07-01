@@ -3,6 +3,7 @@ import DayView from './dayview/DayView'
 import MonthView from './monthview/MonthView'
 import { useDate } from './hooks/useDate'
 import AddButton from './AddButton'
+import CalendarHeader from './CalendarHeader'
 
 export default function DashboardContent() {
     const [nav, setNav] = useState(0)
@@ -10,25 +11,21 @@ export default function DashboardContent() {
     const [hourSelected, setHourSelected] = useState('')
     const [eventsForClickedDay, setEventsForClickedDay] = useState([])
     const [addEvent, setAddEvent] = useState(false)
+    const [swaggity, setSwaggity] = useState()
     const [events, setEvents] = useState(
         localStorage.getItem('events') ?
             JSON.parse(localStorage.getItem('events')) :
             []
     )
 
+    const { days, dateDisplay, currentDateString } = useDate(events, nav)
+    const currentDate = new Date()
+    const consoleDate = `${`${currentDate}`.split(' ', 3)[0]} ${`${currentDate}`.split(' ', 3)[2]} ${`${currentDate}`.split(' ', 3)[1]}`
+    let clickedProp = clicked ? clicked : currentDateString
+
     useEffect(() => {
         localStorage.setItem('events', JSON.stringify(events))
     }, [events])
-
-    function eventsForDate(date) {
-        return events.reduce((acc, event) => {
-            if (event.date === date) return [...acc, event]
-            return acc
-        }, [])
-    }
-
-    const { days, dateDisplay, currentDateString } = useDate(events, nav)
-    let clickedProp = clicked ? clicked : currentDateString
 
     useEffect(() => {
         let totalJames = days.find(day => day.date === clickedProp)
@@ -37,9 +34,38 @@ export default function DashboardContent() {
         }
     }, [days, clickedProp, dateDisplay])
 
+    useEffect(() => {
+        setSwaggity(consoleDate)
+        if (clicked !== undefined && clicked !== null) {
+            let dateForModal = new Date(clicked.split('/')[2], clicked.split('/')[0] - 1, clicked.split('/')[1])
+            let dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
+            setSwaggity(dateString)
+        }
+    }, [clicked, nav, consoleDate, days])
+
+    function eventsForDate(date) {
+        return events.reduce((acc, event) => {
+            if (event.date === date) return [...acc, event]
+            return acc
+        }, [])
+    }
+
     return (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <CalendarHeader
+                dateDisplay={dateDisplay}
+                onNext={() => {
+                    setNav(nav + 1)
+                    // setClicked(null)
+                }}
+                onBack={() => {
+                    setNav(nav - 1)
+                    // setClicked(null)
+                }}
+                setAddEvent={setAddEvent}
+                clickedProp={clickedProp} 
+                swaggity={swaggity}/>
+            <div style={{ display: 'flex', flexDirection: 'row', flex: 1 }}>
                 <DayView
                     days={days}
                     clicked={clicked}
@@ -61,8 +87,8 @@ export default function DashboardContent() {
                     eventsForDate={eventsForDate}
                     addEvent={addEvent}
                     setAddEvent={setAddEvent}
-                    hourSelected={hourSelected} 
-                    clickedProp={clickedProp}/>
+                    hourSelected={hourSelected}
+                    clickedProp={clickedProp} />
             </div>
             {/* add the add button next to the next and back buttons  */}
         </div>
