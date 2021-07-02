@@ -39,7 +39,7 @@ const Modal = ({ onSave, onClose, clicked, addEvent }) => {
                 <textarea
                     onChange={e => setDescription(e.target.value)}
                     id="eventDescriptionInput"
-                    placeholder="Add some detail..."
+                    placeholder="add some detail..."
                     value={description}
                     className={monthView.textArea} />
 
