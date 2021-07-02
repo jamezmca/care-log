@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react'
 import DayView from './dayview/DayView'
 import MonthView from './monthview/MonthView'
 import { useDate } from './hooks/useDate'
-import AddButton from './AddButton'
 import CalendarHeader from './CalendarHeader'
 
 export default function DashboardContent() {
     const [nav, setNav] = useState(0)
     const [clicked, setClicked] = useState()
-    const [hourSelected, setHourSelected] = useState('')
     const [eventsForClickedDay, setEventsForClickedDay] = useState([])
-    const [addEvent, setAddEvent] = useState(false)
+    const [addEvent, setAddEvent] = useState([false, '']) //false and type
     const [swaggity, setSwaggity] = useState()
     const [events, setEvents] = useState(
         localStorage.getItem('events') ?
@@ -19,8 +17,6 @@ export default function DashboardContent() {
     )
 
     const { days, dateDisplay, currentDateString } = useDate(events, nav)
-    const currentDate = new Date()
-    const consoleDate = `${`${currentDate}`.split(' ', 3)[0]} ${`${currentDate}`.split(' ', 3)[2]} ${`${currentDate}`.split(' ', 3)[1]}`
     let clickedProp = clicked ? clicked : currentDateString
 
     useEffect(() => {
@@ -34,14 +30,13 @@ export default function DashboardContent() {
         }
     }, [days, clickedProp, dateDisplay])
 
+
+    // i think i can change this so it just uses clicked prop
     useEffect(() => {
-        setSwaggity(consoleDate)
-        if (clicked !== undefined && clicked !== null) {
-            let dateForModal = new Date(clicked.split('/')[2], clicked.split('/')[0] - 1, clicked.split('/')[1])
-            let dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
-            setSwaggity(dateString)
-        }
-    }, [clicked, nav, consoleDate, days])
+        let dateForModal = new Date(clickedProp.split('/')[2], clickedProp.split('/')[0] - 1, clickedProp.split('/')[1])
+        let dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
+        setSwaggity(dateString)
+    }, [clickedProp, nav, days])
 
     function eventsForDate(date) {
         return events.reduce((acc, event) => {
@@ -63,16 +58,14 @@ export default function DashboardContent() {
                     // setClicked(null)
                 }}
                 setAddEvent={setAddEvent}
-                clickedProp={clickedProp} 
-                swaggity={swaggity}/>
+                clickedProp={clickedProp}
+                swaggity={swaggity} />
             <div style={{ display: 'flex', flexDirection: 'row', flex: 1 }}>
                 <DayView
                     days={days}
                     clicked={clicked}
                     nav={nav}
                     eventsForClickedDay={eventsForClickedDay}
-                    hourSelected={hourSelected}
-                    setHourSelected={setHourSelected}
                 />
                 <MonthView
                     days={days}
@@ -87,7 +80,6 @@ export default function DashboardContent() {
                     eventsForDate={eventsForDate}
                     addEvent={addEvent}
                     setAddEvent={setAddEvent}
-                    hourSelected={hourSelected}
                     clickedProp={clickedProp} />
             </div>
             {/* add the add button next to the next and back buttons  */}
@@ -96,16 +88,3 @@ export default function DashboardContent() {
 }
 
 
-    // function dayHasEvents(day) {
-    //     let newArr = []
-    //     if (!day) return newArr.push(false)
-    //     if (day.event.length === 0) return newArr.push(false)
-    //     newArr.push(true)
-    //     newArr.push(day.event.map(e => [e.date, e.description, e.time, e.title]))
-    //     return newArr
-    // }
-
-
-    // function eventForDate(date) {
-    //     return events.find(e => e.date === date)
-    // }

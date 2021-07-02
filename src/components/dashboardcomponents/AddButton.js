@@ -6,26 +6,26 @@ import * as headerStyles from './header.module.css'
 export default function AddButton({ setAddEvent, clicked, buttonType }) {
 
 
-    if (buttonType === "addButton") {
+    if (buttonType === "note") {
         return (
-            <div className={headerStyles.addButton} onClick={() => { if (clicked) return setAddEvent(true) }}>
-                <h1>Note</h1>
+            <div className={headerStyles.addButton} onClick={() => { if (clicked) return setAddEvent([true, 'note']) }}>
+                <h5>Note</h5>
             </div>
         )
     }
       
-    if (buttonType === "Reminder") {
+    if (buttonType === "reminder") {
         return (
-            <div className={headerStyles.addButton} onClick={() => { if (clicked) return setAddEvent(true) }}>
-                <h1>Reminder</h1>
+            <div className={headerStyles.addButton} onClick={() => { if (clicked) return setAddEvent([true, 'reminder']) }}>
+                <h5>Reminder</h5>
             </div>
         )
     }
       
     if (buttonType === "goal") {
         return (
-            <div className={headerStyles.addButton} onClick={() => { if (clicked) return setAddEvent(true) }}>
-                <h1>Goal</h1>
+            <div className={headerStyles.addButton} onClick={() => { if (clicked) return setAddEvent([true, 'goal']) }}>
+                <h5>Goal</h5>
             </div>
         )
     }

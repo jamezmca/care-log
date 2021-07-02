@@ -10,7 +10,9 @@ export default function CalendarHeader({ onNext, onBack, dateDisplay, setAddEven
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '5px' }}>
                 <button onClick={onBack} id="backButton" className={monthView.backButton}>Back</button>
                 <button onClick={onNext} id="nextButton" className={monthView.nextButton}>Next</button>
-                <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="addButton" />
+                <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="note" />
+                <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="reminder"/>
+                <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="goal"/>
             </div>
         </div>
     )

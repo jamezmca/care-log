@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 import * as monthView from './monthview.module.css'
 
 
-const Modal = ({ onSave, onClose, clicked, hourSelected }) => {
+const Modal = ({ onSave, onClose, clicked, addEvent }) => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [time, setTime] = useState(hourSelected)
+    const [time, setTime] = useState('')
+    const [duration, setDuration] = useState('')
     const [error, setError] = useState(false)
     const dateForModal = new Date(clicked.split('/')[2], clicked.split('/')[0] - 1, clicked.split('/')[1])
     const dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
-
+    let id = Math.floor(Math.random() * 1000000)
 
     return (
         <>
@@ -20,7 +21,7 @@ const Modal = ({ onSave, onClose, clicked, hourSelected }) => {
                     <input value={title}
                         onChange={e => setTitle(e.target.value)}
                         id="eventTitleInput"
-                        placeholder="Self care activity"
+                        placeholder={`${addEvent[1]} title`}
                         className={error ? `${monthView.error} ${monthView.inputTitle}` : `${monthView.inputTitle}`} />
                 </div>
 
@@ -30,15 +31,15 @@ const Modal = ({ onSave, onClose, clicked, hourSelected }) => {
                         id="time"
                         name="time"
                         required
-                        value={time}
                         className={monthView.time}
                         onChange={e => setTime(e.target.value)} />
                 </div>
                 {/* add a label here */}
+                <label htmlFor="time" className={monthView.timeLabel} >Description:</label>
                 <textarea
                     onChange={e => setDescription(e.target.value)}
                     id="eventDescriptionInput"
-                    placeholder="description..."
+                    placeholder="Add some detail..."
                     value={description}
                     className={monthView.textArea} />
 
