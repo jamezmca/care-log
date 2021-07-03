@@ -1,6 +1,6 @@
 import React from 'react'
 import Day from './Day'
-import Modal from './Modal'
+import Modal from '../modal/Modal'
 import * as monthView from './monthview.module.css'
 
 
