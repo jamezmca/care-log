@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import * as modalStyles from './modal.module.css'
+import RepeatedEventChecklist from './RepeatedEventChecklist'
 
 
-export default function Reminder({ title, setTitle, addEvent, setTime, description, setDescription, error, duration, setDuration }) {
+export default function Reminder({ title, setTitle, addEvent, setTime, description, setDescription, error, duration, setDuration, makeRepeatedGoal, setMakeRepeatedGoal }) {
     const [reminderDescription, setReminderDescription] = useState(false)
+
     return (
         <>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '30px' }}>
@@ -35,18 +37,26 @@ export default function Reminder({ title, setTitle, addEvent, setTime, descripti
                         onChange={e => setDuration(e.target.value)} />
                 </div>
             </div>
+            <div style={{ display: 'flex' }}>
+                <div className={modalStyles.addMoreInfo} onClick={() => setReminderDescription(!reminderDescription)}>
+                    <p>{!reminderDescription ? "Add a" : "Remove"} description</p>
+                </div>
+                <div className={modalStyles.addMoreInfo} onClick={() => setMakeRepeatedGoal([!makeRepeatedGoal[0], []])}>
+                    <p>{!makeRepeatedGoal[0] ? "Repeat this reminder" : "Do not repeat"}</p>
+                </div>
+            </div>
 
-            {reminderDescription && <>
-                <label htmlFor="eventDescriptionInput" className={modalStyles.timeLabel} >Description:</label>
+            {reminderDescription &&
                 <textarea
                     onChange={e => setDescription(e.target.value)}
                     id="eventDescriptionInput"
-                    placeholder="add some detail..."
+                    placeholder="Description..."
                     value={description}
-                    className={modalStyles.textArea} />
+                    className={modalStyles.textAreaReminder} />
 
-                    {/* add in repeat functionality */}
-            </>}
+
+            }
+            {makeRepeatedGoal[0] && <RepeatedEventChecklist makeRepeatedGoal={makeRepeatedGoal} setMakeRepeatedGoal={setMakeRepeatedGoal}/>}
 
 
             {/* <h1>render out rest of days todo list</h1> */}

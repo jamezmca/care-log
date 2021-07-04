@@ -15,6 +15,16 @@
     flex-direction: column;
   }
 
+  .modalBackDrop {
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0,0,0,0.2);
+  }
+
   .modalHeader {
     font-size: 40px;
     font-weight: 100;
@@ -39,10 +49,9 @@
     opacity: 0.7;
   }
 
-
-
   .textArea,
-  .textAreaNote {
+  .textAreaNote,
+  .textAreaReminder {
     width: 100%;
     border: none;
     margin-top: 5px;
@@ -60,8 +69,13 @@
       flex: 1;
   }
 
+  .textAreaReminder {
+    height: 50px;
+  }
+
   .textArea:focus,
-  .textAreaNote:focus {
+  .textAreaNote:focus,
+  .textAreaReminder {
     outline: none !important;
     border:1px solid rgba(0, 255, 234, 0.699);
     box-shadow: 0 0 8px #71cebf8c;
@@ -100,14 +114,19 @@
     opacity: 0.7;
   }
 
- 
+  .addMoreInfo {
+    padding: 5px;
+    background-color: white;
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: rgb(72, 202, 202);
+    text-shadow: 0 0 1px white;
+    flex: 1;
+  }
 
-  .modalBackDrop {
-    top: 0px;
-    left: 0px;
-    z-index: 10;
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    background-color: rgba(0,0,0,0.2);
+  .addMoreInfo:hover {
+    cursor: pointer;
+    color: rgb(110, 218, 218);
+    
   }

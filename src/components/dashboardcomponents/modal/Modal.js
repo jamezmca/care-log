@@ -10,7 +10,7 @@ const Modal = ({ onSave, onClose, clicked, addEvent }) => {
     const [description, setDescription] = useState('')
     const [time, setTime] = useState('')
     const [duration, setDuration] = useState('')
-    const [repeatedReminder, setRepeatedReminder] = useState([])
+    const [makeRepeatedGoal, setMakeRepeatedGoal] = useState([false, []])
     const [error, setError] = useState(false)
     const dateForModal = new Date(clicked.split('/')[2], clicked.split('/')[0] - 1, clicked.split('/')[1])
     const dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
@@ -58,6 +58,8 @@ const Modal = ({ onSave, onClose, clicked, addEvent }) => {
                     setTime={setTime}
                     addEvent={addEvent}
                     error={error}
+                    makeRepeatedGoal={makeRepeatedGoal}
+                    setMakeRepeatedGoal={setMakeRepeatedGoal}
                 />}
                 {/* add ability to add another  of any given type and make the modal window scroll view */}
 

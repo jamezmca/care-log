@@ -2,6 +2,8 @@ import React from 'react'
 import * as modalStyles from './modal.module.css'
 // add date completed by, how long until you want to complete it, particalar days of the week, duration, 
 // make if accomidate smart goals
+// add in addable key actions or steps below the description and maybe make the description a touch smaller
+
 
 export default function Goal({ title, setTitle, addEvent, setTime, description, setDescription, error, duration, setDuration }) {
     return (
