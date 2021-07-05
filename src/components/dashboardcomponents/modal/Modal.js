@@ -11,6 +11,7 @@ const Modal = ({ onSave, onClose, clicked, addEvent }) => {
     const [time, setTime] = useState('')
     const [duration, setDuration] = useState('')
     const [makeRepeatedGoal, setMakeRepeatedGoal] = useState([false, []])
+    const [keySteps, setKeySteps] = useState([])
     const [error, setError] = useState(false)
     const dateForModal = new Date(clicked.split('/')[2], clicked.split('/')[0] - 1, clicked.split('/')[1])
     const dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
