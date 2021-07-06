@@ -11,7 +11,10 @@ const Modal = ({ onSave, onClose, clicked, addEvent }) => {
     const [time, setTime] = useState('')
     const [duration, setDuration] = useState('')
     const [makeRepeatedGoal, setMakeRepeatedGoal] = useState([false, []])
-    const [keySteps, setKeySteps] = useState([])
+    const [addTimeDetail, setAddTimeDetail] = useState(false)
+    const [keySteps, setKeySteps] = useState([false, [] ])
+    const [daysOfWeek, setDaysOfWeek] = useState([['Monday', false], ['Tuesday', false], ['Wednesday', false], ['Thursday', false], ['Friday', false], ['Saturday', false], ['Sunday', false],])
+    const [numOfRepeatedWeeks, setNumOfRepeatedWeeks] = useState(1)
     const [error, setError] = useState(false)
     const dateForModal = new Date(clicked.split('/')[2], clicked.split('/')[0] - 1, clicked.split('/')[1])
     const dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
@@ -33,6 +36,16 @@ const Modal = ({ onSave, onClose, clicked, addEvent }) => {
                     setTime={setTime}
                     addEvent={addEvent}
                     error={error}
+                    keySteps={keySteps}
+                    setKeySteps={setKeySteps}
+                    makeRepeatedGoal={makeRepeatedGoal}
+                    setMakeRepeatedGoal={setMakeRepeatedGoal}
+                    daysOfWeek={daysOfWeek}
+                    setDaysOfWeek={setDaysOfWeek}
+                    numOfRepeatedWeeks={numOfRepeatedWeeks}
+                    setNumOfRepeatedWeeks={setNumOfRepeatedWeeks}
+                    addTimeDetail={addTimeDetail}
+                    setAddTimeDetail={setAddTimeDetail}
                 />}
 
                 {addEvent[1] === 'note' && <Note
@@ -61,6 +74,10 @@ const Modal = ({ onSave, onClose, clicked, addEvent }) => {
                     error={error}
                     makeRepeatedGoal={makeRepeatedGoal}
                     setMakeRepeatedGoal={setMakeRepeatedGoal}
+                    daysOfWeek={daysOfWeek}
+                    setDaysOfWeek={setDaysOfWeek}
+                    numOfRepeatedWeeks={numOfRepeatedWeeks}
+                    setNumOfRepeatedWeeks={setNumOfRepeatedWeeks}
                 />}
                 {/* add ability to add another  of any given type and make the modal window scroll view */}
 
