@@ -20,7 +20,6 @@ export default function GoalAdditionals({
     setDaysOfWeek,
 }) {
     const [tempKeyStep, setTempKeyStep] = useState('')
-    console.log(keySteps[1].length > 0)
 
     return (
         <>
@@ -59,12 +58,6 @@ export default function GoalAdditionals({
                 </div>
             </div>
 
-
-
-
-            {/* this one needs to add a key steps; input at one end and a plus at the far right
-            the next one needs to list out all of them with the index num and then the step div and then an x button vertically
-            centered at the right to delete */}
 
             {keySteps[0] && <div style={{ display: 'flex', alignItems: 'center' }}>
                 <input type="text" name="keyStep" placeholder="Add a progress step" value={tempKeyStep} onChange={e => setTempKeyStep(e.target.value)} />

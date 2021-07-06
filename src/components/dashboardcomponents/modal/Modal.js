@@ -59,6 +59,12 @@ const Modal = ({ onSave, onClose, clicked, addEvent }) => {
                     setTime={setTime}
                     addEvent={addEvent}
                     error={error}
+                    makeRepeatedGoal={makeRepeatedGoal}
+                    setMakeRepeatedGoal={setMakeRepeatedGoal}
+                    daysOfWeek={daysOfWeek}
+                    setDaysOfWeek={setDaysOfWeek}
+                    numOfRepeatedWeeks={numOfRepeatedWeeks}
+                    setNumOfRepeatedWeeks={setNumOfRepeatedWeeks}
                 />}
 
                 {addEvent[1] === 'reminder' && <Reminder
