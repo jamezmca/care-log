@@ -160,7 +160,41 @@
     background-color: rgb(95, 218, 218);
   }
 
-  
+  .addKeyProgressStep {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+    box-shadow: 0 0 2px 2px aquamarine;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .addKeyProgressStep p {
+    font-size: 25px;
+    color: white;
+    font-weight: 600;
+  }
+
+  .deleteKeyProgressStep {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    margin-left: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .deleteKeyProgressStep p {
+    font-size: 17px;
+    color: rgb(37, 209, 152);
+    font-weight: 400;
+  }
 
 
 

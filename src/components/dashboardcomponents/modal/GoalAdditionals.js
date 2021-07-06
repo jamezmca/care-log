@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as modalStyles from './modal.module.css'
-import RepeatedEventChecklist from './RepeatedEventChecklist'
 
 //this is for all the goal input additions but is poorly named
 
@@ -19,37 +18,63 @@ export default function GoalAdditionals({
     setNumOfRepeatedWeeks,
     daysOfWeek,
     setDaysOfWeek,
-
-
 }) {
+    const [tempKeyStep, setTempKeyStep] = useState('')
+    console.log(keySteps[1].length > 0)
+
     return (
         <>
+            {keySteps[1].length > 0 && <div>
+                <h3 className={modalStyles.timeLabel} style={{color: 'black', marginBottom: '2px'}}>Key steps:</h3>
+                {keySteps[1].map((e, index) => {
+                    return <div style={{ display: 'flex' }} key={index}>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', flexGrow: 1 }}>
+                            <p>{`${index}: ${e}`}</p>
+                        </div>
+                        <div className={modalStyles.deleteKeyProgressStep}
+                            onClick={() => {
+                                let tempArr3 = [...keySteps]
+                                let tempSecondArr = tempArr3[1].filter(james => e !== james)
+                                tempArr3[1] = tempSecondArr
+                                setKeySteps(tempArr3)
+                                setTempKeyStep('')
+                            }}>
+                            <p>x</p>
+                        </div>
+                    </div>
+                })}
+            </div>}
+
             <div>
                 <div className={modalStyles.addMoreInfo} onClick={() => {
                     let temp = [...keySteps]
                     temp[0] = !temp[0]
                     setKeySteps(temp)
+                    setTempKeyStep('')
                 }}>
-                    <p>{!keySteps[0] ? "Add key progress step" : "Remove all progress steps"}</p>
+                    <p>{!keySteps[0] ? "Add progress step" : "Close progress step"}</p>
                 </div>
             </div>
+
+
+
 
             {/* this one needs to add a key steps; input at one end and a plus at the far right
             the next one needs to list out all of them with the index num and then the step div and then an x button vertically
             centered at the right to delete */}
 
-            {keySteps[1].length > 0 && keySteps[1].map((keyStep, index) => {
-                <div style={{ display: 'flex' }} key={index}>
-                    <div>
-                        <div>{`${index}:`}</div>
-                    </div>
-                    <div><p>x</p></div>
-                    {/* this badboy needs to filter out and delete the current one */}
+            {keySteps[0] && <div style={{ display: 'flex', alignItems: 'center' }}>
+                <input type="text" name="keyStep" placeholder="Add a progress step" value={tempKeyStep} onChange={e => setTempKeyStep(e.target.value)} />
+                <div className={modalStyles.addKeyProgressStep}
+                    onClick={() => {
+                        let tempArr2 = [...keySteps]
+                        tempArr2[1].push(tempKeyStep)
+                        setKeySteps(tempArr2)
+                        setTempKeyStep('')
+                    }}>
+                    <p>+</p>
                 </div>
-            })}
-
-
-            {/* {keySteps[0] &&} */}
+            </div>}
 
             <div style={{ display: 'flex' }}>
                 <div className={modalStyles.addMoreInfo} onClick={() => setAddTimeDetail(!addTimeDetail)}>
