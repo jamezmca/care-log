@@ -165,12 +165,16 @@
     width: 20px;
     height: 20px;
     margin-left: 8px;
-    box-shadow: 0 0 2px 2px aquamarine;
-    background-color: aquamarine;
+    box-shadow: 0 0 2px 2px rgb(65, 235, 178);
+    background-color: rgb(65, 235, 178);
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+  }
+
+  .addKeyProgressStep:hover {
+    background-color: aquamarine;
   }
 
   .addKeyProgressStep p {
@@ -194,6 +198,12 @@
     font-size: 17px;
     color: rgb(37, 209, 152);
     font-weight: 400;
+  }
+
+  .keyStepText {
+    color: black;
+    font-weight: 200;
+    font-size: 12px;
   }
 
 

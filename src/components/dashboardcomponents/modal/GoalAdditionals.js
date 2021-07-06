@@ -24,26 +24,29 @@ export default function GoalAdditionals({
 
     return (
         <>
-            {keySteps[1].length > 0 && <div>
-                <h3 className={modalStyles.timeLabel} style={{color: 'black', marginBottom: '2px'}}>Key steps:</h3>
-                {keySteps[1].map((e, index) => {
-                    return <div style={{ display: 'flex' }} key={index}>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', flexGrow: 1 }}>
-                            <p>{`${index}: ${e}`}</p>
+            {keySteps[1].length > 0 && <div style={{ marginBottom: '10px' }}>
+                <h3 className={modalStyles.timeLabel} style={{ color: 'black', marginBottom: '10px', textAlign: 'left' }}>Key steps:</h3>
+                <div style={{ boxShadow: '0 0 2px 1px lightskyblue', padding: '10px' }}>
+                    {keySteps[1].map((e, index) => {
+                        return <div style={{ display: 'flex', alignItems: 'center' }} key={index}>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', flexGrow: 1 }}>
+                                <p className={modalStyles.keyStepText}>{`Phase ${index + 1}: ${e}`}</p>
+                            </div>
+                            <div className={modalStyles.deleteKeyProgressStep}
+                                onClick={() => {
+                                    let tempArr3 = [...keySteps]
+                                    let tempSecondArr = tempArr3[1].filter(james => e !== james)
+                                    tempArr3[1] = tempSecondArr
+                                    setKeySteps(tempArr3)
+                                    setTempKeyStep('')
+                                }}>
+                                <p>x</p>
+                            </div>
                         </div>
-                        <div className={modalStyles.deleteKeyProgressStep}
-                            onClick={() => {
-                                let tempArr3 = [...keySteps]
-                                let tempSecondArr = tempArr3[1].filter(james => e !== james)
-                                tempArr3[1] = tempSecondArr
-                                setKeySteps(tempArr3)
-                                setTempKeyStep('')
-                            }}>
-                            <p>x</p>
-                        </div>
-                    </div>
-                })}
+                    })}
+                </div>
             </div>}
+
 
             <div>
                 <div className={modalStyles.addMoreInfo} onClick={() => {
