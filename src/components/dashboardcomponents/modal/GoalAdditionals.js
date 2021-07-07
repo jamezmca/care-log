@@ -54,7 +54,7 @@ export default function GoalAdditionals({
                     setKeySteps(temp)
                     setTempKeyStep('')
                 }}>
-                    <p>{!keySteps[0] ? "Add progress step" : "Close progress step"}</p>
+                    <p>{!keySteps[0] ? "Add a progress step" : "Close progress step"}</p>
                 </div>
             </div>
 
