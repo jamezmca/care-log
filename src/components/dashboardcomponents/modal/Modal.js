@@ -19,6 +19,7 @@ const Modal = ({ onSave, onClose, clicked, addEvent }) => {
     const dateForModal = new Date(clicked.split('/')[2], clicked.split('/')[0] - 1, clicked.split('/')[1])
     const dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
     let id = Math.floor(Math.random() * 1000000)
+    console.log(addEvent[1])
 
     return (
         <>
@@ -92,7 +93,7 @@ const Modal = ({ onSave, onClose, clicked, addEvent }) => {
                     <button onClick={() => {
                         if (title) {
                             setError(false)
-                            onSave(title, description, time)
+                            onSave(title, description, time, duration, addEvent[1], daysOfWeek, numOfRepeatedWeeks, keySteps, id )
                         } else {
                             setError(true)
                         }

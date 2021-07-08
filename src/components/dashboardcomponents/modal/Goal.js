@@ -57,6 +57,8 @@ export default function Goal({
                 setAddTimeDetail={setAddTimeDetail}
                 keySteps={keySteps}
                 setKeySteps={setKeySteps}
+                setTime={setTime}
+                setDuration={setDuration}
  
             />
 
