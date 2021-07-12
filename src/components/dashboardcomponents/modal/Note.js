@@ -1,5 +1,6 @@
 import React from 'react'
 import * as modalStyles from './modal.module.css'
+//naughty lil update hehe
 
 
 export default function Note({
