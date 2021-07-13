@@ -14,12 +14,13 @@ const Modal = ({ onSave, onClose, clicked, addEvent }) => {
     const [addTimeDetail, setAddTimeDetail] = useState(false)
     const [keySteps, setKeySteps] = useState([false, [] ])
     const [daysOfWeek, setDaysOfWeek] = useState([['Monday', false], ['Tuesday', false], ['Wednesday', false], ['Thursday', false], ['Friday', false], ['Saturday', false], ['Sunday', false],])
-    const [numOfRepeatedWeeks, setNumOfRepeatedWeeks] = useState(1)
+    const [numOfRepeatedWeeks, setNumOfRepeatedWeeks] = useState(0)
     const [error, setError] = useState(false)
     const dateForModal = new Date(clicked.split('/')[2], clicked.split('/')[0] - 1, clicked.split('/')[1])
     const dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
-    let id = Math.floor(Math.random() * 1000000)
-    console.log(addEvent[1])
+    let id = Math.floor(Math.random() * 1000000000)
+
+
 
     return (
         <>

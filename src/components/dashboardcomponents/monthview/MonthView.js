@@ -10,9 +10,7 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
         return [...acc, `#${e}`]
     }, [])
 
-
-    console.log(events)
-    
+    console.log(days)
 
 
     return (
@@ -54,7 +52,18 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
                         // setClicked(null)
                     }}
                     onSave={(title, description, time, duration, type, daysOfWeek, numOfRepeatedWeeks, keySteps, id) => {
-                        setEvents([...events, { title, description, date: clicked, time, id, type, duration, daysOfWeek, numOfRepeatedWeeks, keySteps, id }])
+                        //add function here
+                        setEvents([...events, { title, description, date: clicked, time, id, type, duration, daysOfWeek, numOfRepeatedWeeks, keySteps }])
+                        if (numOfRepeatedWeeks !== 0) {
+                            let tempDaysArr = daysOfWeek.filter(day => day[1])
+                            for (let j = 0; j < tempDaysArr.length; j++) {
+                                let nextRepeatedDate
+                                for (let i = 0; i < numOfRepeatedWeeks; i++) {
+
+                                }
+                            }
+
+                        }
                         setAddEvent([false, ''])
                         setClicked(null)
                     }}
@@ -64,9 +73,9 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
                         setClicked(null)
                     }}
                     clicked={clicked}
-                    setAddEvent={setAddEvent} 
+                    setAddEvent={setAddEvent}
                     addEvent={addEvent}
-                    />
+                />
             }
         </>
     )

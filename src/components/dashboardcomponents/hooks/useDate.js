@@ -50,11 +50,13 @@ export const useDate = (events, nav) => {
             const dayString = `${month + 1}/${i - paddingDays}/${year}`
 
             if (i > paddingDays) {
+                // let dayNameFinder = dayString.getDate()
+                console.log(new Date)
                 daysArr.push({
                     value: i - paddingDays,
                     event: eventsForDate(dayString),
                     isCurrentDay: i - paddingDays === day && nav === 0,
-                    date: dayString
+                    date: dayString,
                 })
             } else {
                 daysArr.push({
