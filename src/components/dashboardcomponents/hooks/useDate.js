@@ -46,12 +46,14 @@ export const useDate = (events, nav) => {
 
         const daysArr = [];
 
+        //naughty again
+
         for (let i = 1; i <= paddingDays + daysInMonth; i++) {
             const dayString = `${month + 1}/${i - paddingDays}/${year}`
 
             if (i > paddingDays) {
                 // let dayNameFinder = dayString.getDate()
-                console.log(new Date)
+                console.log(new Date(year, month, dayString.split))
                 daysArr.push({
                     value: i - paddingDays,
                     event: eventsForDate(dayString),
