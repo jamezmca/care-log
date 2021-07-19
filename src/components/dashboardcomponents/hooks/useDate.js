@@ -46,19 +46,21 @@ export const useDate = (events, nav) => {
 
         const daysArr = [];
 
-        //naughty again
-
         for (let i = 1; i <= paddingDays + daysInMonth; i++) {
             const dayString = `${month + 1}/${i - paddingDays}/${year}`
 
             if (i > paddingDays) {
                 // let dayNameFinder = dayString.getDate()
-                console.log(new Date(year, month, dayString.split))
+                // console.log(dayString.split('/')[1])
+                // console.log(new Date(year, month, dayString.split('/')[1]))
+                let dayOfTheWeekVar = `${new Date(year, month, dayString.split('/')[1])}`
+                let dayOfTheWeekVar2 = dayOfTheWeekVar.split(' ')[0]
                 daysArr.push({
                     value: i - paddingDays,
                     event: eventsForDate(dayString),
                     isCurrentDay: i - paddingDays === day && nav === 0,
                     date: dayString,
+                    dayOfTheWeek: dayOfTheWeekVar2
                 })
             } else {
                 daysArr.push({
