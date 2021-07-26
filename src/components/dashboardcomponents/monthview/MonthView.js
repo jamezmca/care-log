@@ -58,7 +58,7 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
                             let tempDaysArr = daysOfWeek.filter(day => day[1])
                             for (let j = 0; j < tempDaysArr.length; j++) {
                                 let nextRepeatedDate
-                                //ill fix this soon i prmose
+                                //ill fix this soon i prmose i just am going away
                                 let i = 0
                                 while (i < numOfRepeatedWeeks) {
 
