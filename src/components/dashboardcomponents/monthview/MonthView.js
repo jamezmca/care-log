@@ -12,6 +12,16 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
 
     console.log(days)
 
+    function daysFromToday(currDay, selectedDay) {
+        let daysOfWeek = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
+        return daysOfWeek.indexOf(selectedDay) - daysOfWeek.indexOf(currDay)
+    }
+
+    console.log(clicked)
+    function findNextDateForDay(currDate, dayOfWeek) {
+
+    }
+
 
     return (
         <>
@@ -56,13 +66,13 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
                         setEvents([...events, { title, description, date: clicked, time, id, type, duration, daysOfWeek, numOfRepeatedWeeks, keySteps }])
                         if (numOfRepeatedWeeks !== 0) {
                             let tempDaysArr = daysOfWeek.filter(day => day[1])
-                            for (let j = 0; j < tempDaysArr.length; j++) {
-                                let nextRepeatedDate
-                                //ill fix this soon i prmose i just am going away
-                                let i = 0
-                                while (i < numOfRepeatedWeeks) {
 
-                                }
+                            for (let j = 0; j < tempDaysArr.length; j++) {
+                                let dayForFunction = tempDaysArr[j]
+                                let nextRepeatedDate = findNextDateForDay(nextRepeatedDate, dayForFunction)
+                                //ill fix this soon i prmose i just am going away hurr dururr
+                                let i = 0
+                                
                                 
                             }
 
