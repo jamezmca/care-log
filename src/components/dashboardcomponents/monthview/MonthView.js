@@ -9,19 +9,10 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
     const boxShadows = boxShadow.reduce((acc, e) => {
         return [...acc, `#${e}`]
     }, [])
+    let daysOfWeek = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
+    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec',]
 
     console.log(days)
-
-    function daysFromToday(currDay, selectedDay) {
-        let daysOfWeek = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
-        return daysOfWeek.indexOf(selectedDay) - daysOfWeek.indexOf(currDay)
-    }
-
-    console.log(clicked)
-    function findNextDateForDay(currDate, dayOfWeek) {
-
-    }
-
 
     return (
         <>
@@ -68,12 +59,20 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
                             let tempDaysArr = daysOfWeek.filter(day => day[1])
 
                             for (let j = 0; j < tempDaysArr.length; j++) {
-                                let dayForFunction = tempDaysArr[j]
-                                let nextRepeatedDate = findNextDateForDay(nextRepeatedDate, dayForFunction)
-                                //ill fix this soon i prmose i just am going away hurr dururr
-                                let i = 0
-                                
-                                
+                                let nextRepeatedDate = new Date(clicked.split('/')[2], clicked.split('/')[0] - 1, clicked.split('/')[1] + 1)
+                                console.log(nextRepeatedDate, clicked)
+                                let dayForFunction = tempDaysArr[j][0]
+                                // console.log(dayForFunction.slice(0, 3))
+
+                                for (let i = 0; i < numOfRepeatedWeeks * 7; i++) {
+                                    // console.log(dayForFunction, nextRepeatedDate.toString().split(' ')[0])
+                                    if (dayForFunction.slice(0, 3) === nextRepeatedDate.toString().split(' ')[0]) {
+                                        setEvents([...events, { title, description, date: `${months.indexOf(nextRepeatedDate.toString().split(' ')[1])+1}/${nextRepeatedDate.toString().split(' ')[2]}/${nextRepeatedDate.toString().split(' ')[3]}`, time, id, type, duration, daysOfWeek, numOfRepeatedWeeks, keySteps }])
+                                    }
+                                    nextRepeatedDate.setDate(nextRepeatedDate.getDate() + 1);
+                                }
+
+
                             }
 
                         }
