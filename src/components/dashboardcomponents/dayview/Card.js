@@ -2,7 +2,7 @@ import React from 'react'
 import * as dayview from './dayview.module.css'
 
 
-export default function Card({ cardType, event, editDelete }) {
+export default function Card({ cardType, event, editDelete, deleteEvent }) {
     function backgroundColorSelector(cardType) {
         if (cardType === 'reminder') return "radial-gradient(#1fe4f5, #3fbafe)"
         if (cardType === 'note') return "radial-gradient(#76b2fe, #b69efe)"
@@ -10,12 +10,13 @@ export default function Card({ cardType, event, editDelete }) {
     }
 
     let cursorPointer = editDelete ? 'pointer' : 'auto'
+    console.log(cursorPointer)
 
     //for note content search for new line and add only one new line
     const noteContent = (
         <div className={dayview.cardContainer} style={{ background: backgroundColorSelector(cardType), cursor: cursorPointer }}>
-            {editDelete && <div style={{ display: 'flex', backgroundColor: 'transparent', justifyContent: 'space-between' }}>
-                <div style={{ backgroundColor: 'transparent' }}><p >x</p></div>
+            {editDelete && <div style={{ display: 'flex', backgroundColor: 'transparent', justifyContent: 'center' }}>
+                <div style={{ backgroundColor: 'transparent' }}><p onClick={() => deleteEvent(event.id)}>x</p></div>
             </div>}
             <div className={dayview.noteContainer}>
                 {event.title.split("\n").length > 1 ?

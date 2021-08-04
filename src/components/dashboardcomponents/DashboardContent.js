@@ -66,6 +66,8 @@ export default function DashboardContent() {
                     clicked={clicked}
                     nav={nav}
                     eventsForClickedDay={eventsForClickedDay}
+                    setEvents={setEvents}
+                    events={events}
                 />
                 <MonthView
                     days={days}
