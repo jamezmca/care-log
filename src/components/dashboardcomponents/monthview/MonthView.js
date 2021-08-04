@@ -12,6 +12,7 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
     let daysOfWeek = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
     let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec',]
 
+
     console.log(days)
 
     return (

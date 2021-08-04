@@ -10,14 +10,11 @@ export default function Card({ cardType, event, editDelete, deleteEvent }) {
     }
 
     let cursorPointer = editDelete ? 'pointer' : 'auto'
-    console.log(cursorPointer)
 
     //for note content search for new line and add only one new line
     const noteContent = (
         <div className={dayview.cardContainer} style={{ background: backgroundColorSelector(cardType), cursor: cursorPointer }}>
-            {editDelete && <div style={{ display: 'flex', backgroundColor: 'transparent', justifyContent: 'center' }}>
-                <div style={{ backgroundColor: 'transparent' }}><p onClick={() => deleteEvent(event.id)}>x</p></div>
-            </div>}
+
             <div className={dayview.noteContainer}>
                 {event.title.split("\n").length > 1 ?
                     event.title.split('\n').map((note, index) => {
@@ -25,14 +22,16 @@ export default function Card({ cardType, event, editDelete, deleteEvent }) {
                     }) :
                     <p>{event.title}</p>}
             </div>
-
+            {editDelete && <div style={{ display: 'flex', backgroundColor: 'transparent', justifyContent: 'center' }}>
+                <div style={{ backgroundColor: 'transparent' }}><p onClick={() => deleteEvent(event.id)}>x</p></div>
+            </div>}
         </div>
     )
 
     const reminderContent = (
-        <div className={dayview.cardContainer} style={{ background: backgroundColorSelector(cardType) }}>
+        <div className={dayview.cardContainer} style={{ background: backgroundColorSelector(cardType), cursor: cursorPointer }}>
+
             <div className={dayview.reminderContainer}>
-                { }
                 <div style={{ fontSize: '15px', fontWeight: '500', backgroundColor: 'transparent', display: 'flex', justifyContent: 'space-between', marginBottom: '4px', borderBottom: '1px solid white' }}>
                     <p >{event.title.toUpperCase()}</p> <p>{event.time}</p>
                 </div>
@@ -41,11 +40,15 @@ export default function Card({ cardType, event, editDelete, deleteEvent }) {
                     {event.duration !== "" && <p style={{ textAlign: 'right', opacity: 0.8, fontSize: '11px' }}>Duration: {event.duration}hrs</p>}
                 </div>
             </div>
+            {editDelete && <div style={{ display: 'flex', backgroundColor: 'transparent', justifyContent: 'center' }}>
+                <div style={{ backgroundColor: 'transparent' }}><p onClick={() => deleteEvent(event.id)}>x</p></div>
+            </div>}
         </div>
     )
 
     const goalContent = (
-        <div className={dayview.cardContainer} style={{ background: backgroundColorSelector(cardType) }}>
+        <div className={dayview.cardContainer} style={{ background: backgroundColorSelector(cardType), cursor: cursorPointer }}>
+
             <div className={dayview.goalContainer}>
                 <div style={{ fontSize: '15px', fontWeight: '500', backgroundColor: 'transparent', display: 'flex', justifyContent: 'space-between', marginBottom: '4px', borderBottom: '1px solid white' }}>
                     <p >{event.title.toUpperCase()}</p> <p>{event.time}</p>
@@ -66,6 +69,9 @@ export default function Card({ cardType, event, editDelete, deleteEvent }) {
                 {event.duration !== "" && <p style={{ textAlign: 'right', opacity: 0.8, fontSize: '11px' }}>Duration: {event.duration}hrs</p>}
 
             </div>
+            {editDelete && <div style={{ display: 'flex', backgroundColor: 'transparent', justifyContent: 'center', marginLeft: '5px' }}>
+                <div style={{ backgroundColor: 'transparent' }}><p onClick={() => deleteEvent(event.id)}>x</p></div>
+            </div>}
         </div>
     )
 
