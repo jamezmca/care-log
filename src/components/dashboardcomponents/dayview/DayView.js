@@ -19,7 +19,9 @@ export default function DayView({ clicked, nav, days, eventsForClickedDay, event
                 <p>EDIT / DELETE</p>
             </div>
             {redOrderedEventsForDay.map((event, i) => {
-                
+                if (redOrderedEventsForDay[i-1]?.type !== event.type) {
+                    console.log(redOrderedEventsForDay[i-1]?.type, event.type)
+                }
                 return <Card key={event.id} event={event} cardType={event.type}  editDelete={editDelete} deleteEvent={deleteEvent}/>
             })}
             {eventsForClickedDay.length === 0 && <p style={{ alignSelf: 'center', marginTop: '20px'}}>No plans for today Ü</p>}
