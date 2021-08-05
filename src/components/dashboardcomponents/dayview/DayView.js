@@ -18,7 +18,8 @@ export default function DayView({ clicked, nav, days, eventsForClickedDay, event
             <div onClick={() => setEditDelete(!editDelete)} className={dayview.editButton}>
                 <p>EDIT / DELETE</p>
             </div>
-            {redOrderedEventsForDay.map((event) => {
+            {redOrderedEventsForDay.map((event, i) => {
+                
                 return <Card key={event.id} event={event} cardType={event.type}  editDelete={editDelete} deleteEvent={deleteEvent}/>
             })}
             {eventsForClickedDay.length === 0 && <p style={{ alignSelf: 'center', marginTop: '20px'}}>No plans for today Ü</p>}
