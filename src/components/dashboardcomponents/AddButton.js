@@ -5,9 +5,9 @@ import * as headerStyles from './header.module.css'
 //render three different add buttons based on input type and do it all within this file
 export default function AddButton({ setAddEvent, clicked, buttonType }) {
     function backgroundColorSelector(cardType) {
-        if (buttonType === 'reminder') return "radial-gradient(#1fe4f5, #3fbafe)"
-        if (buttonType === 'note') return "radial-gradient(#76b2fe, #b69efe)"
-        if (buttonType === 'goal') return "radial-gradient(#60efbc, #58d5c9)"
+        if (buttonType === 'reminder') return "#8BBEE8FF"
+        if (buttonType === 'note') return "#D7A9E3FF"
+        if (buttonType === 'goal') return "#A8D5BAFF"
     }
 
     if (buttonType === "note") {

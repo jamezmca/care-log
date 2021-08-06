@@ -11,7 +11,7 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
     // }, [])
     const boxShadows = ['#97BC62FF']
     let daysOfWeek = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
-    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec',]
+    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',]
 
 
     // console.log(days)
@@ -31,7 +31,6 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
 
                 <div id="calendar" className={monthView.calendar}>
                     {days.map((d, index) => {
-                        console.log(d)
                         return <Day
                             shadow={boxShadows[0]}
                             day={d}
@@ -56,30 +55,29 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
                         // setClicked(null)
                     }}
                     onSave={(title, description, time, duration, type, daysOfWeek, numOfRepeatedWeeks, keySteps, id) => {
-                        // console.log(clicked)
-                        //add function here
-                        setEvents([...events, { title, description, date: clicked, time, id, type, duration, daysOfWeek, numOfRepeatedWeeks, keySteps }])
+                        let tempStateArr = [{ title, description, date: clicked, time, id, type, duration, daysOfWeek, numOfRepeatedWeeks, keySteps }]
+
                         if (numOfRepeatedWeeks !== 0) {
                             let tempDaysArr = daysOfWeek.filter(day => day[1])
 
                             for (let j = 0; j < tempDaysArr.length; j++) {
                                 let nextRepeatedDate = new Date(parseInt(clicked.split('/')[2]), parseInt(clicked.split('/')[0]) - 1, parseInt(clicked.split('/')[1]) + 1)
-                                // console.log(nextRepeatedDate, clicked, `${clicked.split('/')[2]}/${parseInt(clicked.split('/')[0])}/${parseInt(clicked.split('/')[1]) + 1}`)
                                 let dayForFunction = tempDaysArr[j][0]
-                                // console.log(dayForFunction.slice(0, 3)) aloha
 
                                 for (let i = 0; i < numOfRepeatedWeeks * 7; i++) {
-                                    // console.log(dayForFunction, nextRepeatedDate.toString().split(' ')[0])
                                     if (dayForFunction.slice(0, 3) === nextRepeatedDate.toString().split(' ')[0]) {
-                                        // console.log(dayForFunction.slice(0, 3))
-                                        // console.log(`${months.indexOf(nextRepeatedDate.toString().split(' ')[1])+1}/${parseInt(nextRepeatedDate.toString().split(' ')[2])}/${parseInt(nextRepeatedDate.toString().split(' ')[3])}`)
-                                        setEvents([...events, { title, description, date: `${months.indexOf(nextRepeatedDate.toString().split(' ')[1]) + 1}/${nextRepeatedDate.toString().split(' ')[2]}/${nextRepeatedDate.toString().split(' ')[3]}`, time, id, type, duration, daysOfWeek, numOfRepeatedWeeks, keySteps }])
+                                        tempStateArr.push({ title, description, date: `${months.indexOf(nextRepeatedDate.toString().split(' ')[1]) + 1}/${nextRepeatedDate.toString().split(' ')[2].indexOf(0) === 0 ? nextRepeatedDate.toString().split(' ')[2].split(0)[1] : nextRepeatedDate.toString().split(' ')[2]}/${nextRepeatedDate.toString().split(' ')[3]}`, time, id, type, duration, daysOfWeek, numOfRepeatedWeeks, keySteps })
                                     }
                                     nextRepeatedDate.setDate(nextRepeatedDate.getDate() + 1);
+                                    console.log(nextRepeatedDate)
+
                                 }
 
 
                             }
+                            console.log(tempStateArr)
+                            setEvents([...events, ...tempStateArr])
+
 
                         }
                         setAddEvent([false, ''])

@@ -11,7 +11,6 @@ export default function DayView({ clicked, nav, days, eventsForClickedDay, event
     }
     function orderByTime(eventArray) {
         if (eventArray.find(e => e === undefined)) return
-        console.log(eventArray)
         let eventsSortedByTime = [...eventArray]
 
         for (let i = 0; i < eventArray.length; i++) {
@@ -22,7 +21,6 @@ export default function DayView({ clicked, nav, days, eventsForClickedDay, event
                     eventsSortedByTime[j + 1] = tmp;
                 }
                 if (eventsSortedByTime[j]?.time === "" && eventsSortedByTime[j + 1] !== undefined) {
-                    console.log(eventsSortedByTime[j])
                     let tmp = eventsSortedByTime[j];
                     eventsSortedByTime[j] = eventsSortedByTime[j + 1];
                     eventsSortedByTime[j + 1] = tmp;
@@ -31,7 +29,7 @@ export default function DayView({ clicked, nav, days, eventsForClickedDay, event
         }
         return eventsSortedByTime
     }
-    console.log([...orderByTime(eventsForClickedDay.filter(event => event.type === "reminder")), ...orderByTime(eventsForClickedDay.filter(event => event.type === "goal"))])
+    // console.log([...orderByTime(eventsForClickedDay.filter(event => event.type === "reminder")), ...orderByTime(eventsForClickedDay.filter(event => event.type === "goal"))])
 
     // default colors palegreen, paleturquoise, thistle
     let redOrderedEventsForDay = [...orderByTime(eventsForClickedDay.filter(event => event.type === "reminder")), ...orderByTime(eventsForClickedDay.filter(event => event.type === "goal")), ...orderByTime(eventsForClickedDay.filter(event => event.type === "note"))]
