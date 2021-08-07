@@ -35,6 +35,11 @@ export default function DashboardContent() {
 
     let { width } = useWindowDimensions()
 
+    useEffect(() => {
+
+        if (width >= 800) setDayView(false)
+    }, [width])
+
     // i think i can change this so it just uses clicked prop
     useEffect(() => {
         let dateForModal = new Date(clickedProp.split('/')[2], clickedProp.split('/')[0] - 1, clickedProp.split('/')[1])
@@ -121,7 +126,7 @@ export default function DashboardContent() {
                 clickedProp={clickedProp}
                 swaggity={swaggity}
                 dayView={dayView} />
-            {!dayView && <MonthView
+            <MonthView
                 days={days}
                 dateDisplay={dateDisplay}
                 setNav={setNav}
@@ -134,7 +139,8 @@ export default function DashboardContent() {
                 eventsForDate={eventsForDate}
                 addEvent={addEvent}
                 setAddEvent={setAddEvent}
-                clickedProp={clickedProp} />}
+                clickedProp={clickedProp}
+                dayView={dayView} />
 
             {dayView && <div style={{ alignSelf: 'center' }}><DayView
                 days={days}

@@ -2,7 +2,7 @@
 
   .container {
       font-family: "Poppins";
-      margin-right: 5px;
+      margin: 5px;
       flex: 1;
   }
   
@@ -11,12 +11,13 @@
     display: flex;
     color: #000000;
     font-weight: 200;
+    background-color: #ADEFD1FF;
+    color: #00203FFF;
     
   }
 
   .weekdays div {
     flex: 1;
-    opacity: 0.75;
     text-align: center;
     /* overflow: hidden; */
   }
