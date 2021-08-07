@@ -28,7 +28,8 @@ export default function CalendarHeader({ onNext, onBack, dateDisplay, setAddEven
     if (dayView) return (
         <div id="header" className={headerStyles.header}>
             <h2 className={headerStyles.dayDisplay}> {swaggity}</h2>
-            <div style={{ display: 'flex',  alignSelf: 'flex-start', marginTop: '10px' }}>
+
+            <div style={{ display: 'flex', alignSelf: 'center' }}>
                 <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="note" />
                 <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="reminder" />
                 <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="goal" />
@@ -39,7 +40,7 @@ export default function CalendarHeader({ onNext, onBack, dateDisplay, setAddEven
     if (!dayView) return (
         <div id="header" className={headerStyles.header}>
             <h2 className={headerStyles.monthDisplay} style={{ textAlign: 'left', marginLeft: '5px' }}> {dateDisplay}</h2>
-            <div style={{ display: 'flex', alignSelf: 'flex-start', marginTop: '10px' }}>
+            <div style={{ display: 'flex', alignSelf: 'center', marginBottom: '4px' }}>
                 <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="note" />
                 <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="reminder" />
                 <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="goal" />

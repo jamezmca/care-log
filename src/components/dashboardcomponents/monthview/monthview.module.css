@@ -16,7 +16,6 @@
 
   .weekdays div {
     flex: 1;
-    padding: 10px;
     opacity: 0.75;
     text-align: center;
     /* overflow: hidden; */
@@ -96,6 +95,12 @@
     }
 
     .event {
+      font-size: 8px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .weekdays div {
       font-size: 8px;
     }
   }

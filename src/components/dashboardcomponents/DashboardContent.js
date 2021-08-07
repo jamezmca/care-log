@@ -135,7 +135,8 @@ export default function DashboardContent() {
                 addEvent={addEvent}
                 setAddEvent={setAddEvent}
                 clickedProp={clickedProp} />}
-            {dayView && <div style={{alignSelf: 'center'}}><DayView
+
+            {dayView && <div style={{ alignSelf: 'center' }}><DayView
                 days={days}
                 clicked={clicked}
                 nav={nav}
