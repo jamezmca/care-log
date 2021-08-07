@@ -2,8 +2,9 @@ import React from 'react'
 import AddButton from './AddButton'
 import * as headerStyles from './header.module.css'
 
-export default function CalendarHeader({ onNext, onBack, dateDisplay, setAddEvent, clickedProp, swaggity }) {
-    return (
+export default function CalendarHeader({ onNext, onBack, dateDisplay, setAddEvent, clickedProp, swaggity, width, dayView }) {
+
+    if (width > 800) return (
         <div id="header" className={headerStyles.header}>
             <h2 className={headerStyles.dayDisplay}> {swaggity}</h2>
             <div style={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-start' }}>
@@ -17,6 +18,28 @@ export default function CalendarHeader({ onNext, onBack, dateDisplay, setAddEven
             </div>
 
             <div style={{ display: 'flex' }}>
+                <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="note" />
+                <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="reminder" />
+                <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="goal" />
+            </div>
+        </div>
+    )
+
+    if (dayView) return (
+        <div id="header" className={headerStyles.header}>
+            <h2 className={headerStyles.dayDisplay}> {swaggity}</h2>
+            <div style={{ display: 'flex',  alignSelf: 'flex-start', marginTop: '10px' }}>
+                <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="note" />
+                <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="reminder" />
+                <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="goal" />
+            </div>
+        </div>
+    )
+
+    if (!dayView) return (
+        <div id="header" className={headerStyles.header}>
+            <h2 className={headerStyles.monthDisplay} style={{ textAlign: 'left', marginLeft: '5px' }}> {dateDisplay}</h2>
+            <div style={{ display: 'flex', alignSelf: 'flex-start', marginTop: '10px' }}>
                 <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="note" />
                 <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="reminder" />
                 <AddButton setAddEvent={setAddEvent} clicked={clickedProp} buttonType="goal" />
