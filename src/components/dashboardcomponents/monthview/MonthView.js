@@ -112,7 +112,9 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
                             let tempDaysArr = daysOfWeek.filter(day => day[1])
 
                             for (let j = 0; j < tempDaysArr.length; j++) {
-                                let nextRepeatedDate = new Date(parseInt(clicked.split('/')[2]), parseInt(clicked.split('/')[0]) - 1, parseInt(clicked.split('/')[1]) + 1)
+                                let nextRepeatedDate = new Date(parseInt(clicked.split('/')[2]), parseInt(clicked.split('/')[0]) - 1, parseInt(clicked.split('/')[1]))
+                                nextRepeatedDate.setDate(nextRepeatedDate.getDate() + 1);
+
                                 let dayForFunction = tempDaysArr[j][0]
 
                                 for (let i = 0; i < numOfRepeatedWeeks * 7; i++) {

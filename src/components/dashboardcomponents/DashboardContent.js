@@ -20,6 +20,8 @@ export default function DashboardContent() {
 
     const { days, dateDisplay, currentDateString } = useDate(events, nav)
     let clickedProp = clicked ? clicked : currentDateString
+    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',]
+
 
 
     useEffect(() => {
@@ -99,6 +101,7 @@ export default function DashboardContent() {
     )
 
     let tabHighlight = dayView ? '0 0 5px #ADEFD1FF' : '0 0 5px #00203FFF'
+
     return (
         <div style={{ height: '100%', display: 'flex', flexDirection: 'column', marginTop: '-5px' }}>
             <div style={{ display: 'flex', textAlign: 'center', cursor: 'pointer' }}>
@@ -121,6 +124,16 @@ export default function DashboardContent() {
                 onBack={() => {
                     setNav(nav - 1)
                     // setClicked(null)
+                }}
+                onNextDay={() => {
+                    let nextRepeatedDate = new Date(parseInt(clicked.split('/')[2]), parseInt(clicked.split('/')[0]) - 1, parseInt(clicked.split('/')[1]))
+                    nextRepeatedDate.setDate(nextRepeatedDate.getDate() + 1);
+                    console.log(clicked, `${months.indexOf(nextRepeatedDate.toString().split(' ')[1]) + 1}/${nextRepeatedDate.toString().split(' ')[2].indexOf(0) === 0 ? nextRepeatedDate.toString().split(' ')[2].split(0)[1] : nextRepeatedDate.toString().split(' ')[2]}/${nextRepeatedDate.toString().split(' ')[3]}`)
+                    // setClicked(`${months.indexOf(nextRepeatedDate.toString().split(' ')[1]) + 1}/${nextRepeatedDate.toString().split(' ')[2].indexOf(0) === 0 ? nextRepeatedDate.toString().split(' ')[2].split(0)[1] : nextRepeatedDate.toString().split(' ')[2]}/${nextRepeatedDate.toString().split(' ')[3]}`)
+
+                }}
+                onBackDay={() => {
+
                 }}
                 setAddEvent={setAddEvent}
                 clickedProp={clickedProp}
