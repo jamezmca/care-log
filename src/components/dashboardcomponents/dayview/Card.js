@@ -57,7 +57,7 @@ export default function Card({ cardType, event, editDelete, deleteEvent }) {
                     <p>{event.description}</p>
                 </div>
                 {event.keySteps[1].length > 0 && <div style={{ backgroundColor: 'transparent' }}>
-                    <p style={{ textAlign: 'center', textDecoration: 'underline' }}>Key steps:</p>
+                    <p style={{ textAlign: 'left', textDecoration: 'underline' }}>Key steps:</p>
                     {event.keySteps[1].map((keyStep, index) => {
                         return <p key={`${keyStep}${index}`}>{index + 1}: {keyStep}</p>
                     })}
