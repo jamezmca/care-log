@@ -126,14 +126,15 @@ export default function DashboardContent() {
                     // setClicked(null)
                 }}
                 onNextDay={() => {
-                    let nextRepeatedDate = new Date(parseInt(clicked.split('/')[2]), parseInt(clicked.split('/')[0]) - 1, parseInt(clicked.split('/')[1]))
+                    let nextRepeatedDate = new Date(parseInt(clickedProp.split('/')[2]), parseInt(clickedProp.split('/')[0]) - 1, parseInt(clickedProp.split('/')[1]))
                     nextRepeatedDate.setDate(nextRepeatedDate.getDate() + 1);
-                    console.log(clicked, `${months.indexOf(nextRepeatedDate.toString().split(' ')[1]) + 1}/${nextRepeatedDate.toString().split(' ')[2].indexOf(0) === 0 ? nextRepeatedDate.toString().split(' ')[2].split(0)[1] : nextRepeatedDate.toString().split(' ')[2]}/${nextRepeatedDate.toString().split(' ')[3]}`)
-                    // setClicked(`${months.indexOf(nextRepeatedDate.toString().split(' ')[1]) + 1}/${nextRepeatedDate.toString().split(' ')[2].indexOf(0) === 0 ? nextRepeatedDate.toString().split(' ')[2].split(0)[1] : nextRepeatedDate.toString().split(' ')[2]}/${nextRepeatedDate.toString().split(' ')[3]}`)
+                    setClicked(`${months.indexOf(nextRepeatedDate.toString().split(' ')[1]) + 1}/${nextRepeatedDate.toString().split(' ')[2].indexOf(0) === 0 ? nextRepeatedDate.toString().split(' ')[2].split(0)[1] : nextRepeatedDate.toString().split(' ')[2]}/${nextRepeatedDate.toString().split(' ')[3]}`)
 
                 }}
                 onBackDay={() => {
-
+                    let nextRepeatedDate = new Date(parseInt(clickedProp.split('/')[2]), parseInt(clickedProp.split('/')[0]) - 1, parseInt(clickedProp.split('/')[1]))
+                    nextRepeatedDate.setDate(nextRepeatedDate.getDate() - 1);
+                    setClicked(`${months.indexOf(nextRepeatedDate.toString().split(' ')[1]) + 1}/${nextRepeatedDate.toString().split(' ')[2].indexOf(0) === 0 ? nextRepeatedDate.toString().split(' ')[2].split(0)[1] : nextRepeatedDate.toString().split(' ')[2]}/${nextRepeatedDate.toString().split(' ')[3]}`)
                 }}
                 setAddEvent={setAddEvent}
                 clickedProp={clickedProp}
