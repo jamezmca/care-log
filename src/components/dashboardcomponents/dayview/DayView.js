@@ -45,11 +45,11 @@ export default function DayView({ clicked, nav, days, eventsForClickedDay, event
                     return (
                         <div key={event.id}>
                             <p style={{ textAlign: 'center', opacity: 0.5, }}>--- {event.type.toUpperCase()}S ---</p>
-                            <Card event={event} cardType={event.type} editDelete={editDelete} deleteEvent={deleteEvent} />
+                            <Card event={event} cardType={event.type} editDelete={editDelete} deleteEvent={deleteEvent} id={event.id} />
                         </div>
                     )
                 }
-                return <Card key={event.id} event={event} cardType={event.type} editDelete={editDelete} deleteEvent={deleteEvent} />
+                return <Card key={event.id} event={event} cardType={event.type} editDelete={editDelete} deleteEvent={deleteEvent} id={event.id}/>
             })}
             {eventsForClickedDay.length === 0 && <p style={{ alignSelf: 'center', marginTop: '20px' }}>No plans for today Ü</p>}
         </div>
