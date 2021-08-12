@@ -14,6 +14,7 @@ export default function DashboardContent({ user }) {
     const [swaggity, setSwaggity] = useState()
     const [dayView, setDayView] = useState(false)
     const [events, setEvents] = useState([])
+    
 
     useEffect(() => {
         database.ref().child("users").child(user.userId).get().then((snapshot) => {
@@ -28,7 +29,7 @@ export default function DashboardContent({ user }) {
         }).catch((error) => {
             console.error(error)
         })
-    }, [])
+    }, [user.userId])
     // localStorage.getItem('events') ?
     // JSON.parse(localStorage.getItem('events')) :
     // []
