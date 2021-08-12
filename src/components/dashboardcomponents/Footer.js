@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 export default function Footer({ handleLogout }) {
     return (
         <div className={headerStyles.footerContainer}>
-            <Link to="/update-profile">Update Profile</Link>
+            <Link to="/update-profile">update profile</Link>
             <p onClick={handleLogout}>logout</p>
         </div>
     )
