@@ -9,11 +9,14 @@
   .weekdays {
     width: 100%;
     display: flex;
-    color: #000000;
-    font-weight: 200;
-    background-color: #ADEFD1FF;
-    color: #00203FFF;
-    
+    font-weight: 500;
+    border: 1px solid lightskyblue;
+    color: darkslateblue;
+  }
+
+  .weekdays div {
+    background-color: rgb(112, 228, 203);
+
   }
 
   .weekdays div {
@@ -86,7 +89,7 @@
   @media (max-width: 750px) {
     .weekdays div {
       opacity: 1;
-      font-weight: 200;
+      font-weight: 300;
       font-size: 10px;
       align-self: auto;
     }

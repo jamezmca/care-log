@@ -20,9 +20,17 @@
     /* background-size: 1000% 1000%; */
     /* animation: GradientSwirl 70s ease infinite; */
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 500px){
+    .container {
+        background-repeat: repeat-y;
+        border: 2px solid pink;
+    }
 }
 
 @keyframes GradientSwirl { 

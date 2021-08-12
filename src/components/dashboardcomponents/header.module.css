@@ -74,6 +74,30 @@
     text-shadow: 0 0 6px white;
 }
 
+.footerContainer {
+  text-align: center;
+  padding: 6px;
+  background-color: rgb(104, 191, 192);
+  display: flex;
+  justify-content: center;
+}
+
+.footerContainer p,
+.footerContainer a {
+  font-weight: 800;
+  letter-spacing: 3px;
+  transform: scaleX(0.9);
+  color: #CBCE91FF;
+  background-color: transparent;
+  mix-blend-mode: normal;
+  cursor: pointer;
+}
+
+.footerContainer p:hover,
+.footerContainer a:hover {
+  color: white;
+}
+
 @media (max-width: 500px) {
   .header {
     flex-direction: column;
@@ -91,3 +115,4 @@
   }
   
 }
+

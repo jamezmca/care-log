@@ -14,13 +14,12 @@ export default function DashboardContent({ user }) {
     const [swaggity, setSwaggity] = useState()
     const [dayView, setDayView] = useState(false)
     const [events, setEvents] = useState([])
-    
+    const [editedEvent, setEditedEvent] = useState('')
 
     useEffect(() => {
         database.ref().child("users").child(user.userId).get().then((snapshot) => {
             if (snapshot.exists() && snapshot.val()?.events) {
                 setEvents(JSON.parse(snapshot.val().events))
-                console.log(JSON.parse(snapshot.val().events))
             } else {
                 setEvents(localStorage.getItem('events') ?
                     JSON.parse(localStorage.getItem('events')) :
@@ -34,12 +33,13 @@ export default function DashboardContent({ user }) {
     // JSON.parse(localStorage.getItem('events')) :
     // []
 
+    console.log(addEvent, editedEvent)
+
     const { days, dateDisplay, currentDateString } = useDate(events, nav)
     let clickedProp = clicked ? clicked : currentDateString
     let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',]
 
     function writeUserData(userId, email, events) {
-        console.log([events])
         database.ref('users/' + userId).set({
             id: userId,
             email: email,
@@ -111,6 +111,8 @@ export default function DashboardContent({ user }) {
                     eventsForClickedDay={eventsForClickedDay}
                     setEvents={setEvents}
                     events={events}
+                    setAddEvent={setAddEvent}
+                    setEditedEvent={setEditedEvent}
                 />
                 <MonthView
                     days={days}
@@ -125,7 +127,9 @@ export default function DashboardContent({ user }) {
                     eventsForDate={eventsForDate}
                     addEvent={addEvent}
                     setAddEvent={setAddEvent}
-                    clickedProp={clickedProp} />
+                    clickedProp={clickedProp}
+                    setEditedEvent={setEditedEvent}
+                    editedEvent={editedEvent} />
             </div>
             {/* add the add button next to the next and back buttons  */}
         </div>

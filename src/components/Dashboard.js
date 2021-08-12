@@ -9,8 +9,6 @@ const Dashboard = () => {
     const { currentUser, logout } = useAuth()
     const history = useHistory()
 
-    console.log(currentUser)
-
     async function handleLogout() {
         setError('')
         try {
@@ -23,7 +21,7 @@ const Dashboard = () => {
     }
     //need to add logout to header
     return (
-        <Layout>
+        <Layout handleLogout={handleLogout} >
             {/* <div>
                 <div>
                     <h2>Profile</h2>

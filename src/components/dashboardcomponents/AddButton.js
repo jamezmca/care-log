@@ -6,7 +6,7 @@ import * as headerStyles from './header.module.css'
 export default function AddButton({ setAddEvent, clicked, buttonType }) {
     function backgroundColorSelector(cardType) {
         if (buttonType === 'reminder') return "#8BBEE8FF"
-        if (buttonType === 'note') return "#D7A9E3FF"
+        if (buttonType === 'note') return "#9c96f5"
         if (buttonType === 'goal') return "#A8D5BAFF"
     }
 

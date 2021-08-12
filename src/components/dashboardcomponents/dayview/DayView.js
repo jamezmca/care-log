@@ -3,12 +3,15 @@ import Card from './Card'
 import * as dayview from './dayview.module.css'
 
 
-export default function DayView({ clicked, nav, days, eventsForClickedDay, events, setEvents }) {
+export default function DayView({ clicked, nav, days, eventsForClickedDay, events, setEvents, setAddEvent, setEditedEvent }) {
     const [editDelete, setEditDelete] = useState(false)
 
-    function deleteEvent(eventId) {
-        setEvents(events.filter(event => event.id !== eventId))
+    function deleteEvent(eventId, eventDate) {
+        setEvents(events.filter(event => {
+            return event.id !== eventId || event.date !== eventDate
+        }))
     }
+
     function orderByTime(eventArray) {
         if (eventArray.find(e => e === undefined)) return
         let eventsSortedByTime = [...eventArray]
@@ -30,7 +33,7 @@ export default function DayView({ clicked, nav, days, eventsForClickedDay, event
         return eventsSortedByTime
     }
     // console.log([...orderByTime(eventsForClickedDay.filter(event => event.type === "reminder")), ...orderByTime(eventsForClickedDay.filter(event => event.type === "goal"))])
-
+    console.log(eventsForClickedDay)
     // default colors palegreen, paleturquoise, thistle
     let redOrderedEventsForDay = [...orderByTime(eventsForClickedDay.filter(event => event.type === "reminder")), ...orderByTime(eventsForClickedDay.filter(event => event.type === "goal")), ...orderByTime(eventsForClickedDay.filter(event => event.type === "note"))]
     let editDeleteButtonStyle = !editDelete ? 'darkslateblue' : 'slateblue'
@@ -45,11 +48,11 @@ export default function DayView({ clicked, nav, days, eventsForClickedDay, event
                     return (
                         <div key={event.id}>
                             <p style={{ textAlign: 'center', opacity: 0.5, }}>--- {event.type.toUpperCase()}S ---</p>
-                            <Card event={event} cardType={event.type} editDelete={editDelete} deleteEvent={deleteEvent} id={event.id} />
+                            <Card event={event} cardType={event.type} editDelete={editDelete} deleteEvent={deleteEvent} id={event.id} setAddEvent={setAddEvent} setEditedEvent={setEditedEvent} />
                         </div>
                     )
                 }
-                return <Card key={event.id} event={event} cardType={event.type} editDelete={editDelete} deleteEvent={deleteEvent} id={event.id}/>
+                return <Card key={event.id} event={event} cardType={event.type} editDelete={editDelete} deleteEvent={deleteEvent} id={event.id} setAddEvent={setAddEvent} setEditedEvent={setEditedEvent} />
             })}
             {eventsForClickedDay.length === 0 && <p style={{ alignSelf: 'center', marginTop: '20px' }}>No plans for today Ü</p>}
         </div>

@@ -1,12 +1,13 @@
 import React from 'react'
+import * as headerStyles from './header.module.css'
+import { Link } from 'react-router-dom'
 
-export default function Footer() {
+
+export default function Footer({ handleLogout }) {
     return (
-        <div style={{textAlign: 'center', padding: '10px'}}>
-            <p style={{ fontWeight: '800', letterSpacing: '3px', transform: 'scaleY(0.9)', color: '#CBCE91FF'}}>
-            didgeridoo
-                {/* "Yesterday is history, tomorrow is a mystery, and today is a gift - that is why they call it the present." - Master Oogway  */}
-            </p>
+        <div className={headerStyles.footerContainer}>
+            <Link to="/update-profile">Update Profile</Link>
+            <p onClick={handleLogout}>logout</p>
         </div>
     )
 }

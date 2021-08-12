@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as modalStyles from './modal.module.css'
 import Goal from './Goal'
 import Note from './Note'
 import Reminder from './Reminder'
 
 
-const Modal = ({ onSave, onClose, clicked, addEvent }) => {
+const Modal = ({ onSave, onClose, clicked, addEvent, editedEvent }) => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [time, setTime] = useState('')
@@ -20,8 +20,19 @@ const Modal = ({ onSave, onClose, clicked, addEvent }) => {
     const dateString = `${dateForModal.toDateString().split(' ', 3)[0]} ${dateForModal.toDateString().split(' ', 3)[2]} ${dateForModal.toDateString().split(' ', 3)[1]}`
     let id = Math.floor(Math.random() * 1000000000)
 
-
-
+    useEffect(() => {
+        if (editedEvent !== '') {
+            setTitle(editedEvent.title)
+            setDescription(editedEvent.description)
+            setTime(editedEvent.time)
+            setDuration(editedEvent.duration)
+            setDaysOfWeek(editedEvent.daysOfWeek)
+            setAddTimeDetail(editedEvent.addTimeDetail)
+            setKeySteps(editedEvent.keySteps)
+            setNumOfRepeatedWeeks(editedEvent.numOfRepeatedWeeks)
+        }
+    }, [editedEvent])
+    //if id is given then find and fill out
     return (
         <>
             <div id="newEventModal" className={modalStyles.newEventModal}>

@@ -41,8 +41,8 @@ const UpdateProfile = () => {
     }
 
     return (
-        <div>
-            <div>
+        <div className={signupStyles.container}>
+            <div className={signupStyles.content}>
                 <h2>Update Profile</h2>
                 {error && <h2>{error}</h2>}
                 <form onSubmit={handleSubmit}>
