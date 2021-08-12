@@ -24,12 +24,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: teal;
 }
 
 @media (max-width: 500px){
     .container {
         background-repeat: repeat-y;
-        border: 2px solid pink;
     }
 }
 
