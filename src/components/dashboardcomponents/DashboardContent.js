@@ -2,27 +2,56 @@ import React, { useState, useEffect } from 'react'
 import DayView from './dayview/DayView'
 import MonthView from './monthview/MonthView'
 import { useDate } from './hooks/useDate'
-import useWindowDimensions, { windowDimensions } from './hooks/useWindowDimensions'
+import useWindowDimensions from './hooks/useWindowDimensions'
 import CalendarHeader from './CalendarHeader'
+import { database } from '../../firebase'
 
-export default function DashboardContent() {
+export default function DashboardContent({ user }) {
     const [nav, setNav] = useState(0)
     const [clicked, setClicked] = useState()
     const [eventsForClickedDay, setEventsForClickedDay] = useState([])
     const [addEvent, setAddEvent] = useState([false, '']) //false and type
     const [swaggity, setSwaggity] = useState()
     const [dayView, setDayView] = useState(false)
-    const [events, setEvents] = useState(
-        localStorage.getItem('events') ?
-            JSON.parse(localStorage.getItem('events')) :
-            []
-    )
+    const [events, setEvents] = useState([])
+
+    useEffect(() => {
+        database.ref().child("users").child(user.userId).get().then((snapshot) => {
+            if (snapshot.exists() && snapshot.val()?.events) {
+                setEvents(JSON.parse(snapshot.val().events))
+                console.log(JSON.parse(snapshot.val().events))
+            } else {
+                setEvents(localStorage.getItem('events') ?
+                    JSON.parse(localStorage.getItem('events')) :
+                    [])
+            }
+        }).catch((error) => {
+            console.error(error)
+        })
+    }, [])
+    // localStorage.getItem('events') ?
+    // JSON.parse(localStorage.getItem('events')) :
+    // []
 
     const { days, dateDisplay, currentDateString } = useDate(events, nav)
     let clickedProp = clicked ? clicked : currentDateString
     let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',]
 
+    function writeUserData(userId, email, events) {
+        console.log([events])
+        database.ref('users/' + userId).set({
+            id: userId,
+            email: email,
+            events: [events]
+        })
+    }
 
+    useEffect(() => {
+        if (events.length !== 0) {
+            localStorage.setItem('events', JSON.stringify(events))
+            writeUserData(user.userId, user.email, JSON.stringify(events))
+        }
+    }, [events, user.email, user.userId])
 
     useEffect(() => {
         localStorage.setItem('events', JSON.stringify(events))
@@ -55,6 +84,7 @@ export default function DashboardContent() {
             return acc
         }, [])
     }
+
 
     if (width > 800) return (
         <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>

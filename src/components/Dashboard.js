@@ -9,6 +9,8 @@ const Dashboard = () => {
     const { currentUser, logout } = useAuth()
     const history = useHistory()
 
+    console.log(currentUser)
+
     async function handleLogout() {
         setError('')
         try {
@@ -31,7 +33,7 @@ const Dashboard = () => {
                 </div>
             </div>
             <div><button onClick={handleLogout}>Logout</button></div> */}
-            <DashboardContent/>
+            <DashboardContent user={{userId: currentUser.uid, email:currentUser.email}}/>
         </Layout>
     )
 }
