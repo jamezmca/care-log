@@ -82,6 +82,7 @@ export default function MonthView({ days, setClicked, clicked, setEvents, events
         <>
             {addEvent[0] &&
                 <Modal
+                    editedEvent={editedEvent}
                     onClose={() => {
                         setAddEvent([false, ''])
                     }}

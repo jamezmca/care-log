@@ -21,7 +21,7 @@ const Modal = ({ onSave, onClose, clicked, addEvent, editedEvent }) => {
     let id = Math.floor(Math.random() * 1000000000)
 
     useEffect(() => {
-        if (editedEvent !== '') {
+        if (editedEvent !== '' && editedEvent !== undefined) {
             setTitle(editedEvent.title)
             setDescription(editedEvent.description)
             setTime(editedEvent.time)
