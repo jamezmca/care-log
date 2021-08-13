@@ -188,6 +188,8 @@ export default function DashboardContent({ user }) {
                 eventsForDate={eventsForDate}
                 addEvent={addEvent}
                 setAddEvent={setAddEvent}
+                setEditedEvent={setEditedEvent}
+                editedEvent={editedEvent}
                 clickedProp={clickedProp}
                 dayView={dayView} />
 
@@ -198,6 +200,9 @@ export default function DashboardContent({ user }) {
                 eventsForClickedDay={eventsForClickedDay}
                 setEvents={setEvents}
                 events={events}
+                setAddEvent={setAddEvent}
+                setEditedEvent={setEditedEvent}
+                editedEvent={editedEvent}
             /> </div>}
 
         </div >
